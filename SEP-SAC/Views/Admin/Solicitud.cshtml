@@ -1,0 +1,429 @@
+﻿@model SEP_SAC.Models.Solicitud
+
+@{
+    ViewBag.Title = "Solicitud";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<!-- Bradcrumbs -->
+<div class="container">
+    <div class="row" style="margin-top: 15px;">
+        <div class="col s12 breadcrumbs">
+            <a href="/admin">Admin</a> > <span>Solicitud @Model.numero_solicitud</span>
+        </div>
+    </div>
+</div>
+<!-- Fin de bradcrumbs -->
+
+<div class="container">
+
+    <div class="row" style="margin-bottom:60px;">
+
+        <div class="col s12 center-align">
+            <h1 style="margin-bottom:35px;">Revisión de Solicitud</h1>
+            <span style="font-size:26px; color: #515151;">@Model.numero_solicitud</span>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col m6 s12">
+
+            <div class="card gris-neutro">
+                <div class="card-content white-text">
+
+                    <div class="row">
+                        <div class="col s12">
+                            <span class="card-title"><img src="/img/certificado-blanco.png" style="width:25px; vertical-align:middle;">&nbsp;&nbsp;Datos del certificado</span>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col s4 color-gris-claro">
+                            Procedimiento:
+                        </div>
+
+                        <div class="col s8">
+                            @Model.Perfiles1.Niveles.Procedimientos.nombre
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col s4 color-gris-claro">
+                            Nivel:
+                        </div>
+                        <div class="col s8">
+                            @Model.Perfiles1.Niveles.nombre
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col s4 color-gris-claro">
+                            Pérfil:
+                        </div>
+                        <div class="col s8">
+                            @Model.Perfiles1.nombre
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col s4 color-gris-claro">
+                            Estatus:
+                        </div>
+                        <div class="col s8">
+                            @Model.estatus
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col s4 color-gris-claro">
+                            Evaluador asignado:
+                        </div>
+                        <div class="col s8">
+
+                            @if(Model.Evaluador != null)
+                            {
+                                @Model.Evaluador.nombre
+                            }
+                            else
+                            {
+                                <span>Sin asignar</span>
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card white">
+                <div class="card-content">
+
+                    <div class="row">
+                        <div class="col s12">
+                            <span class="card-title"><img src="/img/usuario-logo-negro.png" style="width:35px; vertical-align:middle;">&nbsp;&nbsp;Datos personales</span>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col s4 color-gris-claro">
+                            Nombre:
+                        </div>
+
+                        <div class="col s8">
+                            @Model.Solicitante.Datos.nombre
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col s4 color-gris-claro">
+                            Primer apellido:
+                        </div>
+
+                        <div class="col s8">
+                            @Model.Solicitante.Datos.primer_apellido
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col s4 color-gris-claro">
+                            Segundo apellido:
+                        </div>
+
+                        <div class="col s8">
+                            @Model.Solicitante.Datos.segundo_apellido
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col s4 color-gris-claro">
+                            Correo electrónico:
+                        </div>
+
+                        <div class="col s8">
+                            @Model.Solicitante.Email
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col s4 color-gris-claro">
+                            Fecha de nacimiento
+                        </div>
+
+                        <div class="col s8">
+                            @Model.Solicitante.Datos.fecha_nacimiento.Day/@Model.Solicitante.Datos.fecha_nacimiento.Month/@Model.Solicitante.Datos.fecha_nacimiento.Year
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col s4 color-gris-claro">
+                            Edad
+                        </div>
+                        <div class="col s8">
+                            @{
+                                var date = DateTime.Now.Date.Subtract(Model.Solicitante.Datos.fecha_nacimiento);
+                                var age = date.Days / 365;
+                            }
+                            @age Años                            
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col s4 color-gris-claro">
+                            Entidad Federativa:
+                        </div>
+
+                        <div class="col s8">
+                            @Model.entidad_federativa
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col m6 s12">
+
+
+            <div class="card white">
+                <div class="card-content">
+
+                    <div class="row" style="margin-bottom:0px;">
+                        <div class="col s12">
+                            <span class="card-title"><img src="/img/bullets-negro.png" style="width:30px; vertical-align:middle;">&nbsp;&nbsp;Documentos</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col s12">
+                            <table class="highlight bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Requisito</th>
+                                        <th class="center-align">Documento</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+                                    @foreach(var requerimiento in Model.Perfiles1.Requerimientos)
+                                    {
+                                        <tr>
+                                            <td>@requerimiento.nombre</td>
+                                            <td>
+                                                @if(requerimiento.tipo_requerimiento == "archivo_adjunto")
+                                                {
+                                                    foreach(var adjunto in Model.Adjuntos)
+                                                    {
+                                                        if(adjunto.Requerimiento.id == requerimiento.id)
+                                                        {
+                                                            <a href="@adjunto.Archivo.path@adjunto.Archivo.nombre_archivo"><i class="material-icons">attach_file</i></a>
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <span>ND</span>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    @if (Model.estatus == "Registrado")
+    {
+        if (User.IsInRole("Admin") || User.IsInRole("Superadmin"))
+        {
+            @Html.Partial("_MenuSolicitudAdminRegistrado")
+        }
+    }
+
+    @if (Model.estatus == "Asignado")
+    {
+        if(User.IsInRole("Evaluador") || User.IsInRole("Superadmin"))
+        {
+            @Html.Partial("_MenuSolicitudEvaluadorAsignado")
+        }
+    }
+
+
+    @if (Model.estatus == "Evaluado")
+    {
+        if (User.IsInRole("Admin") || User.IsInRole("Superadmin"))
+        {
+            @Html.Partial("_MenuSolicitudAdminEvaluado")
+        }
+    }
+
+    @if (Model.estatus == "Reasignado")
+    {
+        if (User.IsInRole("Admin") || User.IsInRole("Superadmin"))
+        {
+            @Html.Partial("_MenuSolicitudAdminReasignado");
+        }
+    }
+
+    @if(Model.estatus == "Colegio")
+    {
+        if (User.IsInRole("CProfesionistas") || User.IsInRole("Superadmin"))
+        {
+            @Html.Partial("_MenuSolicitudCPColegio");
+        }
+    }
+
+    @if (Model.estatus == "Aprobado por Colegio")
+    {
+        if (User.IsInRole("Evaluador") || User.IsInRole("Superadmin"))
+        {
+            @Html.Partial("_MenuSolicitudAdminAprobadoPorColegio");
+        }
+    }
+
+    @if (Model.estatus == "Autorizado")
+    {
+        if (User.IsInRole("Evaluador") || User.IsInRole("Superadmin"))
+        {
+            @Html.Partial("_MenuSolicitudEvaluadorAutorizado");
+        }
+    }
+
+</div>
+
+@if (Model.estatus == "Registrado")
+{
+    if (User.IsInRole("Admin") || User.IsInRole("Superadmin"))
+    {
+        @Html.Partial("_ModalsSolicitudAdminRegistrado")
+    }
+}
+
+@if (Model.estatus == "Asignado")
+{
+    if (User.IsInRole("Evaluador") || User.IsInRole("Superadmin"))
+    {
+        @Html.Partial("_ModalsSolicitudEvaluadorAsignado")
+    }
+}
+
+@if (Model.estatus == "Reasignado")
+{
+    if(User.IsInRole("Admin") || User.IsInRole("Superadmin"))
+    {
+        @Html.Partial("_ModalSolicitudAdminReasignado");
+    }
+}
+
+@if (Model.estatus == "Colegio")
+{
+    if (User.IsInRole("CProfesionistas") || User.IsInRole("Superadmin"))
+    {
+        @Html.Partial("_ModalSolicitudCPColegio");
+    }
+}
+
+@if (Model.estatus == "Aprobado por Colegio")
+{
+    if (User.IsInRole("Evaluador") || User.IsInRole("Superadmin"))
+    {
+        @Html.Partial("_ModalSolicitudAdminAprobadoPorColegio");
+    }
+}
+
+@if (Model.estatus == "Autorizado")
+{
+    if (User.IsInRole("Evaluador") || User.IsInRole("Superadmin"))
+    {
+        @Html.Partial("_ModalSolicitudEvaluadorAutorizado");
+    }
+}
+
+
+
+@section scripts{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('.modal').modal();
+        });
+
+
+        $(document).ready(function () {
+            $('select').material_select();
+            $('.select-dropdown').attr('name', '1');
+        });
+
+    </script>
+
+    <script type="text/javascript" src="~/js/jquery.validate.js"></script>
+
+    <script type="text/javascript">
+
+	    $.validator.messages.required = "* Requerido";
+	    $.validator.messages.email = "*";
+
+	    $(document).ready(function () {
+            /*
+		    $("#DesechamientoSolicitudForm").validate();
+		    $("#IncompetenciaSolicitudForm").validate();
+		    $("#PrevencionSolicitudForm").validate();
+		    $("#InstanciaSolicitudForm").validate();
+		    $("#ColegioSolicitudForm").validate();
+		    $("#ResolucionSolicitudForm").validate();
+            */
+	    });
+
+	    $('#submit-instancia').click(function(){
+
+		    var bandera = true;
+
+		    if(!$("#InstanciaSolicitudForm").valid()){
+			    bandera = false
+		    }
+
+		    if($("#InstanciaInstanciaId").val() == ""){
+			    bandera = false
+			    $('#label-instancia').css('display','');
+		    }else{
+			    $('#label-instancia').css('display','none');
+		    }
+
+		    return bandera;
+	    });
+
+	    $('#submit-colegio').click(function(){
+
+		    var bandera = true;
+
+		    if(!$("#ColegioSolicitudForm").valid()){
+			    bandera = false;
+		    }
+
+		    if($("#ColegioColegioId").val() == ""){
+			    bandera = false
+			    $('#label-colegio').css('display','');
+		    }else{
+			    $('#label-colegio').css('display','none');
+		    }
+
+		    return bandera;
+	    });
+
+    </script>
+
+}

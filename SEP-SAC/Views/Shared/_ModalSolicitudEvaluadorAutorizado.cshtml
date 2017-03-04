@@ -1,0 +1,75 @@
+﻿@using (Html.BeginForm("Evaluar", "Admin"))
+{
+    @Html.AntiForgeryToken()
+    
+    <input type="hidden" name="solicitud_id" value="@Model.id" />
+
+    <div id="evaluar" class="modal modal-fixed-footer">
+        <div class="modal-content">
+
+            <div class="row">
+                <div class="col s12">
+                    <h1>Resolución</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s4 file-field input-field">
+
+                    <span class="heading-evaluacion">Evaluación 1</span>
+
+                    <div class="btn">
+                        <span><i class="material-icons">attachment</i></span>
+                        <input type="file" name="primerarchivo">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" name="archivo_1">
+                    </div>
+                </div>
+
+                <div class="col s4 file-field input-field">
+
+                    <span class="heading-evaluacion">Evaluación 2</span>
+
+                    <div class="btn">
+                        <span><i class="material-icons">attachment</i></span>
+                        <input type="file" name="segundoarchivo">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" name="archivo_2">
+                    </div>
+                </div>
+
+                <div class="col s4 file-field input-field">
+
+                    <span class="heading-evaluacion">Evaluación 3</span>
+
+                    <div class="btn">
+                        <span><i class="material-icons">attachment</i></span>
+                        <input type="file" name="tercerarchivo">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" name="archivo_3">
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="row">
+                <div class="col s6 offset-s3 center-align">
+                        <input name="dictamen" type="radio" id="test1" />
+                        <label for="test1">Aprobado</label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="dictamen" type="radio" id="test2" />
+                        <label for="test2">No aprobado</label>
+                    
+                </div>
+            </div>
+            
+        </div>
+        <div class="modal-footer fondo-verde">
+            <span style="padding-top:12px; display:inline-block;">APROBAR</span>
+            <button id="submit-instancia" class="btn" type="submit">Proceder</button>
+        </div>
+    </div>
+}

@@ -1,0 +1,52 @@
+﻿@model SEP_SAC.Models.Perfil
+
+@{
+    ViewBag.Title = "Certificado";
+    Layout = null;
+}
+
+<div class="row">
+    <div class="s12 col center-align">
+        <h1 class="titulo-solicitud-modal"><img src="/img/certificado-negro-gris.png" style="width:35px; display:inline-block; vertical-align:middle;"> @Model.Niveles.nombre</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="s12 col center-align">
+        <h2 class="color-gris-oscuro">@Model.nombre</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div id="info-documentos" class="s6 col">
+        <h2 class="color-gris-oscuro">Requisitos y documentación</h2>
+        <ul>
+            @foreach (var req in Model.Requerimientos)
+            {
+                <li><span>@req.nombre</span></li>
+            }
+        </ul>
+        <span class="color-rojo">* Todos los requisitos son obligatorios</span>
+    </div>
+    <div class="s6 col">
+        <div class="tabla">
+            <div id="info-registrate" class="celda center-align">
+                <a href="/tramite/@Model.id" class="btn btn-negro">inicia tu tramite</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(window).resize(function () {
+        var alto = $('#info-documentos').height();
+        $('#info-registrate').css('height', alto + 'px');
+    });
+
+    $(window).load(function () {
+        var alto = $('#info-documentos').height();
+        $('#info-registrate').css('height', alto + 'px');
+    });
+
+</script>

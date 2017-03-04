@@ -1,0 +1,262 @@
+/*
+*
+*
+*	Layout Dashboard
+*
+*
+*/
+
+.dash-gris-neutro{
+	color: #A0A0A0;
+	font-weight: bold;
+}
+
+#dash-header-nombre{
+	border-left: 1px solid #A0A0A0;
+}
+
+.dash-back-gris{
+	background-color: #EFEFEF;
+}
+
+.dash-color-gris-claro{
+	color: #B7B7B7;
+	font-weight: bold;
+	font-size: 20px;
+	padding-top: 40px;
+	padding-bottom:20px;
+}
+
+.dash-color-gris-claro a{
+	color: #C9C9C9;
+}
+
+.dash-color-gris-claro a:hover{
+	color: #515151;
+}
+
+.dash-gris-claro{
+	color: #C9C9C9;
+	font-weight: bold;
+}
+
+.dash-gris-fuerte{
+	color: #515151;
+	font-weight: bold;
+}
+
+#dash-notificaciones{
+	font-weight: bold;
+	line-height: 1.2;
+	padding-top: 25px;
+}
+
+#dash-notificaciones a{
+	color: #A0A0A0;
+}
+
+.dash-min-height{
+	min-height: 500px;
+}
+
+.dash-mas{
+	margin-top:5px;
+	margin-right: 8px;
+}
+
+.dash-seleccionado{
+	color: #515151 !important;
+}
+
+
+
+
+
+/*
+*
+*
+*	Usuario Inicia
+*
+*
+*/
+
+.usin-border{
+	border-radius: 20px;
+}
+
+#usin-boton-tramite:focus, #usin-boton-tramite:hover{
+	background-color: #515151;
+	color: white;
+}
+
+#usin-boton-tramite{
+	color: #515151;
+    border: 4px solid #515151;
+    border-radius: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: block;
+    text-transform: lowercase;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+#usin-texto{
+	max-width: 190px;
+	font-size: 12px;
+}
+
+
+
+
+
+/*
+*
+*
+*	Usuario Notificaciones
+*
+*
+*/
+
+#usno-contenido{
+	padding: 30px;
+}
+
+.circle{
+	width: 10px;
+	height: 10px;
+	margin: 17px 1rem 10px 5px;
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	border-radius: 25px;
+	background: #00FFB6;
+}
+
+#usno-contenido .collapsible{
+	box-shadow: none;
+	border: none;
+}
+
+#usno-contenido p{
+	color: black;
+}
+
+
+
+
+
+/*
+*
+*
+*	Usuario Solicitud
+*
+*
+*/
+
+.dash-borde-left{
+	border-left: 1px solid #C9C9C9;
+}
+
+.dash-borde-bottom{
+	padding-bottom: 10px;
+	border-bottom: 1px solid #C9C9C9;
+	position: relative;
+}
+
+.dash-requistos{
+	color: #515151;
+}
+
+.solicitud-editar{
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+
+.solicitud-titulos{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.solicitud-imagen{
+	margin-right: 10px;
+	margin-top:5px;
+	width: 30px;
+}
+
+.solicitud-editar-image{
+	width: 30px;
+	margin-bottom: -8px;
+	margin-left: 10px;
+}
+
+#dash-solicitud-modal{
+	border-radius: 20px;
+	width: 40%;
+}
+
+#soli-modal-titulo{
+	font-size: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.solicitud-imagen-modal{
+	margin-right: 10px;
+	margin-top:5px;
+	width: 20px;
+}
+
+#dash-solicitud-modal .row{
+	margin-bottom: 0px;
+}
+
+#soli-modal-rojo{
+	font-style: italic;
+	color: red;
+	font-size: 12px;
+	margin-top: 30px;
+}
+
+#a-color a{
+	color: #B7B7B7;
+}
+
+
+
+
+
+/*
+*
+*
+*	Registro
+*
+*
+*/
+
+label.error, #EntidadFederativa-error, #nacionalidad-error, .confirmaPassword-error, #groupGenero-error, #groupAbajo-error, #aviso-error, .confirmaCorreo-error{
+	position: initial !important;
+	color: rgb(255,66,0) !important;
+	margin-left: 10px;
+}
+
+.confirmaCorreo-error{
+	position: initial;
+}
+
+#groupGenero-error, #groupAbajo-error, #aviso-error{
+	font-size: inherit;
+	font-weight: bold;
+}
+
+span > label.error{
+	font-size: 15px;
+}
+
+.input-field > label.active > label{
+	font-size: 0.8rem;
+	-webkit-transform: translateY(-140%);
+	transform: translateY(-140%);
+}

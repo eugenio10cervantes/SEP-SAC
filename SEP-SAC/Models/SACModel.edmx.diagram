@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0cd4096125b64f479cbd6e4f9e6395d1" Name="Diagram1" ZoomLevel="71" ShowGrid="false">
+        <EntityTypeShape EntityType="SACModel.Nivel" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SACModel.Perfil" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SACModel.Procedimiento" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SACModel.Requerimiento" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="SACModel.FK_Niveles_Perfiles" ManuallyRouted="false" />
+        <AssociationConnector Association="SACModel.FK_Procedimiento_Niveles" ManuallyRouted="false" />
+        <AssociationConnector Association="SACModel.FK_Perfiles_Requerimientos" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SACModel.C__MigrationHistory" Width="1.5" PointX="8.125" PointY="4.625" />
+        <EntityTypeShape EntityType="SACModel.AspNetRoles" Width="1.5" PointX="1" PointY="6.875" />
+        <EntityTypeShape EntityType="SACModel.AspNetUserClaims" Width="1.5" PointX="5.625" PointY="7.5" />
+        <EntityTypeShape EntityType="SACModel.AspNetUserLogins" Width="1.5" PointX="5.625" PointY="4.875" />
+        <EntityTypeShape EntityType="SACModel.AspNetUsers" Width="1.5" PointX="3.125" PointY="4.25" />
+        <AssociationConnector Association="SACModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="SACModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="SACModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="SACModel.Solicitud" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="SACModel.FK_Solicitante" />
+        <EntityTypeShape EntityType="SACModel.Datos" Width="1.5" PointX="0.75" PointY="4.25" />
+        <AssociationConnector Association="SACModel.FK_Datos_Users" />
+        <AssociationConnector Association="SACModel.FK_Perfil1" />
+        <EntityTypeShape EntityType="SACModel.Adjunto" Width="1.5" PointX="11" PointY="1.125" />
+        <EntityTypeShape EntityType="SACModel.Archivo" Width="1.5" PointX="11.75" PointY="5.25" />
+        <EntityTypeShape EntityType="SACModel.PrimerasEvaluacione" Width="1.5" PointX="7.875" PointY="4.625" />
+        <EntityTypeShape EntityType="SACModel.SegundasEvaluacione" Width="1.5" PointX="7.875" PointY="7.25" />
+        <EntityTypeShape EntityType="SACModel.TercerasEvaluacione" Width="1.5" PointX="7.875" PointY="10.125" />
+        <AssociationConnector Association="SACModel.FK_Adjunto_Requerimiento" />
+        <AssociationConnector Association="SACModel.FK_Adjunto_Solicitud" ></AssociationConnector>
+        <AssociationConnector Association="SACModel.FK_Archivo_Adjunto" />
+        <AssociationConnector Association="SACModel.FK_Archivo_PE" />
+        <AssociationConnector Association="SACModel.FK_Archivo_SE" />
+        <AssociationConnector Association="SACModel.FK_Archivo_TE" ></AssociationConnector>
+        <AssociationConnector Association="SACModel.FK_Solicitud_PE" />
+        <AssociationConnector Association="SACModel.FK_Solicitud_SE" />
+        <AssociationConnector Association="SACModel.FK_Solicitud_TE" />
+        <EntityTypeShape EntityType="SACModel.Evaluador" Width="1.5" PointX="3.125" PointY="9.5" />
+        <AssociationConnector Association="SACModel.FK_Usuarios_Evaluadores" />
+        <AssociationConnector Association="SACModel.FK_EvaluadorAsignado" />
+        <EntityTypeShape EntityType="SACModel.SolicitudDeshechada" Width="1.5" PointX="4.625" PointY="11.625" />
+        <AssociationConnector Association="SACModel.FK_SolicitudesDeshechadas" />
+        <EntityTypeShape EntityType="SACModel.Colegio" Width="1.5" PointX="0.875" PointY="9.875" />
+        <AssociationConnector Association="SACModel.FK_Colegios" />
+        <EntityTypeShape EntityType="SACModel.ColegioAsignado" Width="1.5" PointX="2.5" PointY="12.25" />
+        <AssociationConnector Association="SACModel.FK_Colegio" />
+        <AssociationConnector Association="SACModel.FK_ColegiosAsignados" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

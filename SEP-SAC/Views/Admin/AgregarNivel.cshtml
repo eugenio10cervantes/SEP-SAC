@@ -1,0 +1,46 @@
+﻿@model SEP_SAC.Models.Nivel
+
+@{
+    ViewBag.Title = "AgregarNivel";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<!-- Bradcrumbs -->
+<div class="container">
+    <div class="row" style="margin-top: 15px;">
+        <div class="col s12 breadcrumbs">
+            <a href="/admin">Admin</a> > <a href="/Admin/Procedimientos/">Procedimientos</a> > <a href="/Admin/Procedimiento/@ViewBag.id">@ViewBag.nombre_procedimiento</a> > <span>Agregar nivel</span>
+        </div>
+    </div>
+</div>
+<!-- Fin de bradcrumbs -->
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" value="@ViewBag.id" name="procedimiento_id" id="procedimiento_id" />
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col s12 center-align">
+                <h1>Agregar nivel</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="s12 col input-field">
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="s12 col center-align">
+                <button type="submit" class="btn">
+                    Agregar
+                </button>
+            </div>
+        </div>
+    </div>
+}

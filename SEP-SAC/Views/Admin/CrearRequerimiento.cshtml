@@ -1,0 +1,57 @@
+﻿@model SEP_SAC.Models.Requerimiento
+
+@{
+    ViewBag.Title = "CrearRequerimiento";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<!-- Bradcrumbs -->
+<div class="container">
+    <div class="row" style="margin-top: 15px;">
+        <div class="col s12 breadcrumbs">
+            <a href="/admin">Admin</a> > <a href="/Admin/Procedimientos/">Procedimientos</a> > <a href="~/Admin/Procedimiento/@ViewBag.id_procedimiento">Procedimiento @ViewBag.nombre_procedimiento</a> > <a href="/Admin/Nivel/@ViewBag.nivel_id">@ViewBag.nombre_nivel</a> > <a href="/Admin/Perfil/@ViewBag.id">@ViewBag.nombre_perfil</a> > <span>Crear Requerimiento</span>
+        </div>
+    </div>
+</div>
+<!-- Fin de bradcrumbs -->
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" name="perfil_id" id="perfil_id" value="@ViewBag.id" />
+
+    <div class="container">
+
+        <div class="row">
+            <div class="s12 col center-align">
+                <h1>Crear Requerimiento</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="s12 col input-field">
+                <label for="nombre">Requerimiento (Ej. Tener al menos 18 años)</label>
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="s12 col">
+                <input type="checkbox" name="tipo_requerimiento" value="archivo_adjunto" id="incluye_adjunto" />
+                <label for="incluye_adjunto">¿Archivo adjunto?</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="s12 col">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

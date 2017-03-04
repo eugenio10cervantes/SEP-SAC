@@ -1,0 +1,41 @@
+﻿@model SEP_SAC.Models.Perfil
+
+@{
+    ViewBag.Title = "BorrarPerfil";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="container">
+    
+    <div class="row">
+        <div class="s12 col center-align">
+            <h1>Borrar Perfil</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="s12 col">
+            <h2>¿Estás seguro que deseas borrar éste perfil?</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="s12 col">
+            @Model.nombre pertenece al nivel @Model.Niveles.nombre
+        </div>
+    </div>
+
+    <div class="row">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Borrar" class="btn btn-default" /> |
+                @Html.ActionLink("Cancelar", "Nivel", new { id = Model.nivel_id })
+            </div>
+        }
+
+    </div>
+</div>

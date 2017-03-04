@@ -1,0 +1,69 @@
+﻿@model SEP_SAC.Models.Procedimiento
+
+@{
+    ViewBag.Title = "Procedimiento";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<!-- Bradcrumbs -->
+<div class="container">
+    <div class="row" style="margin-top: 15px;">
+        <div class="col s12 breadcrumbs">
+            <a href="/admin">Admin</a> > <a href="/Admin/Procedimientos/">Procedimientos</a> > <span>Procedimiento @Model.nombre</span>
+        </div>
+    </div>
+</div>
+<!-- Fin de bradcrumbs -->
+
+<div class="container">
+
+    <div class="row">
+        <div class="col s12 center-align">
+            <h1>Procedimiento @Model.nombre</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+
+            <h2>Niveles asociados</h2>
+
+            <table class="highlight bordered">
+                <thead>
+                    <tr>
+                        <th>Nivel</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var nivel in Model.Niveles)
+                    {
+                        <tr>
+                            <td>
+                                <a href="~/Admin/Nivel/@nivel.id">
+                                    @nivel.nombre
+                                </a>
+                            </td>
+                            <td class="acciones">
+                                <a href="~/Admin/EditarNivel/@nivel.id">
+                                    Editar
+                                </a>
+                                <a href="~/Admin/BorrarNivel/@nivel.id">
+                                    Borrar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 right-align">
+            <a href="~/Admin/AgregarNivel/@Model.id" class="btn-floating btn-large waves-effect waves-light red" title="Agregar nivel"><i class="material-icons">add</i></a>
+        </div>
+    </div>
+</div>

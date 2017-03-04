@@ -1,0 +1,67 @@
+﻿@model IEnumerable<SEP_SAC.Models.Procedimiento>
+
+@{
+    ViewBag.Title = "Procedimientos";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<!-- Bradcrumbs -->
+<div class="container">
+    <div class="row" style="margin-top: 15px;">
+        <div class="col s12 breadcrumbs">
+            <a href="/admin">Admin</a> > <span>Procedimientos</span>
+        </div>
+    </div>
+</div>
+<!-- Fin de bradcrumbs -->
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col s12 center-align">
+            <h1>Tipo de procedimientos</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <table class="bordered striped highlight centered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.nombre, "Procedimiento", new { id = item.id })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.creacion)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "EditarProcedimiento", new { id = item.id }) |
+                            @Html.ActionLink("Ver detalles", "Procedimiento", new { id = item.id }) |
+                            @Html.ActionLink("Borrar", "BorrarProcedimiento", new { id = item.id })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 right-align">
+            <a href="~/Admin/CrearProcedimiento" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+        </div>
+    </div>
+
+</div>

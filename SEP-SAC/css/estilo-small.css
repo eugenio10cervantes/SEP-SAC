@@ -1,0 +1,18 @@
+@media screen and (max-width: 600px) {
+
+	#header{
+		background-color: rgb(239,239,239);
+	}
+
+	#header div.row{
+		margin-bottom: 0px;
+	}
+
+	.btn{
+		font-size: 12px;
+		text-transform: none;
+		line-height: normal;
+		padding: 5px;
+	}
+
+}

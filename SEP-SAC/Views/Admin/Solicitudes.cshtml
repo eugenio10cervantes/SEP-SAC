@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SEP_SAC.Models.Solicitud>
+@{
+    ViewBag.Title = "Solicitudes";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<!-- Bradcrumbs -->
+<div class="container">
+    <div class="row" style="margin-top: 15px;">
+        <div class="col s12 breadcrumbs">
+            <a href="/admin">Admin</a> > <span>Solicitudes</span>
+        </div>
+    </div>
+</div>
+<!-- Fin de bradcrumbs -->
+
+<div class="container">
+
+    <div class="row">
+        <div class="s12 col center-align">
+            <h1>Solicitudes</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="s12 col">
+            <table class="bordered striped">
+                <thead>
+                    <tr>
+                        <th>Número de Solicitud</th>
+                        <th>Nombre del Solicitante</th>
+                        <th>Estatus</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                @foreach (var solicitud in Model)
+                {
+                    <tr>
+                        <td>@solicitud.id</td>
+                        <td>@solicitud.Solicitante.Datos.nombre @solicitud.Solicitante.Datos.primer_apellido @solicitud.Solicitante.Datos.segundo_apellido</td>
+                        <td>@solicitud.estatus</td>
+                        <td>
+                            <a href="~/Admin/Solicitud/@solicitud.id" class="btn">Revisar</a>
+                        </td>
+                    </tr>
+
+
+                }
+
+            </table>
+
+        </div>
+    </div>
+</div>

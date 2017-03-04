@@ -1,0 +1,82 @@
+﻿@using (Html.BeginForm("AsignarEvaluador", "Admin"))
+{
+    @Html.AntiForgeryToken()
+    <div id="instancia" class="modal modal-fixed-footer">
+        <div class="modal-content">
+
+            <div class="row" style="margin-top:30px;">
+                <div class="col m6 s12">
+
+                    <div class="row">
+                        <div class="col s12">
+                            <span class="card-title"><img src="/img/usuario-logo-negro.png" style="width:35px; vertical-align:middle;">&nbsp;&nbsp;Datos del solicitante</span>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="solicitud_id" value="@Model.id" />
+
+                    <div class="row">
+                        <div class="col s12 input-field">
+
+                            <input type="text" name="nombre" value="@Model.Solicitante.Datos.nombre @Model.Solicitante.Datos.primer_apellido @Model.Solicitante.Datos.segundo_apellido" disabled />
+                            <label>Nombre del solicitante</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12 input-field">
+                            <input type="text" name="nivel" value="@Model.Perfiles1.Niveles.nombre" disabled />
+                            <label>Nivel</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12 input-field">
+                            <input type="text" name="perfil" value="@Model.Perfiles1.nombre" disabled />
+                            <label>Perfil</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12 input-field">
+                            <input type="text" name="entidad_federativa" value="@Model.entidad_federativa" disabled />
+                            <label>Entidad Federativa</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col m6 s12">
+
+                    <div class="row">
+                        <div class="col s12">
+                            <span class="card-title"><img src="/img/acuerdo-icono.png" style="height:30px; vertical-align:middle;">&nbsp;&nbsp;Datos del acuerdo</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12 input-field">
+                            <input type="text" name="fecha" value="@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year" disabled />
+                            <label>Fecha</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12 input-field">
+                            @Html.DropDownList("evaluador_id", null, "Instancia a asignar", htmlAttributes: new { })
+                            <label>
+                                Instancia Evaluadora
+                                <label id="label-instancia" for="InstanciaInstanciaId" style="display:none;" class="error">* Requerido</label>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer fondo-verde">
+            <span style="padding-top:12px; display:inline-block;">ASIGNACIÓN A INSTANCIA EVALUADORA</span>
+            <button id="submit-instancia" class="btn" type="submit">Admitir</button>
+        </div>
+    </div>
+}

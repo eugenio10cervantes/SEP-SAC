@@ -1,0 +1,42 @@
+﻿@model SEP_SAC.Models.Requerimiento
+
+@{
+    ViewBag.Title = "BorrarRequerimiento";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="s12 col center-align">
+            <h1>Borrar Requerimiento</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="s12 col">
+            <h2>¿Estás seguro que deseas borrar éste requerimiento?</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="s12 col">
+            @Model.nombre pertenece al perfil @Model.Perfiles.nombre
+        </div>
+    </div>
+
+    <div class="row">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Borrar" class="btn btn-default" /> |
+                @Html.ActionLink("Cancelar", "Perfil", new { id = Model.perfil_id })
+            </div>
+        }
+
+    </div>
+</div>

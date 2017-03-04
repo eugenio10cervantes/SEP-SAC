@@ -1,0 +1,59 @@
+﻿@model SEP_SAC.Models.Nivel
+
+@{
+    ViewBag.Title = "EditarNivel";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+
+<!-- Bradcrumbs -->
+<div class="container">
+    <div class="row" style="margin-top: 15px;">
+        <div class="col s12 breadcrumbs">
+            <a href="/admin">Admin</a> > <a href="/Admin/Procedimientos/">Procedimientos</a> > <a href="~/Admin/Procedimiento/@Model.Procedimientos.id">Procedimiento @Model.Procedimientos.nombre</a> > <a href="/Admin/Nivel/@Model.id">@Model.nombre</a> > <span>Editar</span>
+        </div>
+    </div>
+</div>
+<!-- Fin de bradcrumbs -->
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.id)
+    @Html.HiddenFor(model => model.procedimiento_id)
+    @Html.HiddenFor(model => model.creacion)
+    @Html.HiddenFor(model => model.modificacion)
+
+    <div class="container">
+        
+        <div class="row">
+            <div class="s12 col center-align">
+                <h2>Editar Nivel</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="row">
+            <div class="col s12 input-field">
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "required" } })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="s12 col center-align">
+                <button type="submit" class="btn">
+                    Guardar
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+        
+}

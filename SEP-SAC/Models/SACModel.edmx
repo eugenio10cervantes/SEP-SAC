@@ -1,0 +1,1358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SACModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adjuntos">
+          <Key>
+            <PropertyRef Name="archivo_id" />
+          </Key>
+          <Property Name="archivo_id" Type="int" Nullable="false" />
+          <Property Name="solicitud_id" Type="int" Nullable="false" />
+          <Property Name="requerimiento_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Archivos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_archivo" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="mime" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="path" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="created" Type="datetime" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Colegios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ColegiosAsignados">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="colegio_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="jefe_departamento" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="cargo" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="antecedente" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="periodo" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="destinatario" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="puesto" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="universidad" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="created" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="modified" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Datos">
+          <Key>
+            <PropertyRef Name="usuario_id" />
+          </Key>
+          <Property Name="usuario_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="primer_apellido" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="segundo_apellido" Type="nvarchar" MaxLength="100" />
+          <Property Name="fecha_nacimiento" Type="date" Nullable="false" />
+          <Property Name="genero" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nacionalidad" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="curp" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="domicilio" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="colonia" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="estado" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="delegacion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="localidad" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="codigo_postal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefono" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefono_movil" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="medio" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Evaluadores">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Niveles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="procedimiento_id" Type="int" Nullable="false" />
+          <Property Name="creacion" Type="datetime" Nullable="false" />
+          <Property Name="modificacion" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Perfiles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="nivel_id" Type="int" Nullable="false" />
+          <Property Name="creacion" Type="datetime" Nullable="false" />
+          <Property Name="modificacion" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PrimerasEvaluaciones">
+          <Key>
+            <PropertyRef Name="solicitud_id" />
+          </Key>
+          <Property Name="solicitud_id" Type="int" Nullable="false" />
+          <Property Name="archivo_id" Type="int" Nullable="false" />
+          <Property Name="resultado" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="created" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="modified" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Procedimientos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="creacion" Type="datetime" />
+          <Property Name="modificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Requerimientos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="perfil_id" Type="int" Nullable="false" />
+          <Property Name="tipo_requerimiento" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="creacion" Type="datetime" />
+          <Property Name="modificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SegundasEvaluaciones">
+          <Key>
+            <PropertyRef Name="solicitud_id" />
+          </Key>
+          <Property Name="solicitud_id" Type="int" Nullable="false" />
+          <Property Name="archivo_id" Type="int" Nullable="false" />
+          <Property Name="resultado" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="created" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="modified" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Solicitudes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="solicitante_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="numero_solicitud" Type="nvarchar" MaxLength="50" />
+          <Property Name="perfil_id" Type="int" Nullable="false" />
+          <Property Name="resolucion_final" Type="nvarchar" MaxLength="50" />
+          <Property Name="entidad_federativa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="estatus" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="created" Type="datetime" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="evaluador_id" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="SolicitudesDeshechadas">
+          <Key>
+            <PropertyRef Name="solicitud_id" />
+          </Key>
+          <Property Name="solicitud_id" Type="int" Nullable="false" />
+          <Property Name="jefe_departamento" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="cargo" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="documentos" Type="text" />
+          <Property Name="created" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="modified" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TercerasEvaluaciones">
+          <Key>
+            <PropertyRef Name="solicitud_id" />
+          </Key>
+          <Property Name="solicitud_id" Type="int" Nullable="false" />
+          <Property Name="archivo_id" Type="int" Nullable="false" />
+          <Property Name="resultado" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="created" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="modified" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Adjunto_Requerimiento">
+          <End Role="Requerimientos" Type="Self.Requerimientos" Multiplicity="1" />
+          <End Role="Adjuntos" Type="Self.Adjuntos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requerimientos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Adjuntos">
+              <PropertyRef Name="requerimiento_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adjunto_Solicitud">
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="1" />
+          <End Role="Adjuntos" Type="Self.Adjuntos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitudes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Adjuntos">
+              <PropertyRef Name="solicitud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Archivo_Adjunto">
+          <End Role="Archivos" Type="Self.Archivos" Multiplicity="1" />
+          <End Role="Adjuntos" Type="Self.Adjuntos" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Archivos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Adjuntos">
+              <PropertyRef Name="archivo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Archivo_PE">
+          <End Role="Archivos" Type="Self.Archivos" Multiplicity="1" />
+          <End Role="PrimerasEvaluaciones" Type="Self.PrimerasEvaluaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Archivos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PrimerasEvaluaciones">
+              <PropertyRef Name="archivo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Archivo_SE">
+          <End Role="Archivos" Type="Self.Archivos" Multiplicity="1" />
+          <End Role="SegundasEvaluaciones" Type="Self.SegundasEvaluaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Archivos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SegundasEvaluaciones">
+              <PropertyRef Name="archivo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Archivo_TE">
+          <End Role="Archivos" Type="Self.Archivos" Multiplicity="1" />
+          <End Role="TercerasEvaluaciones" Type="Self.TercerasEvaluaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Archivos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TercerasEvaluaciones">
+              <PropertyRef Name="archivo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Colegio">
+          <End Role="Colegios" Type="Self.Colegios" Multiplicity="1" />
+          <End Role="ColegiosAsignados" Type="Self.ColegiosAsignados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colegios">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ColegiosAsignados">
+              <PropertyRef Name="colegio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Colegios">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Colegios" Type="Self.Colegios" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Colegios">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ColegiosAsignados">
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="1" />
+          <End Role="ColegiosAsignados" Type="Self.ColegiosAsignados" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitudes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ColegiosAsignados">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Datos_Users">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Datos" Type="Self.Datos" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Datos">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EvaluadorAsignado">
+          <End Role="Evaluadores" Type="Self.Evaluadores" Multiplicity="0..1" />
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evaluadores">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="evaluador_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Niveles_Perfiles">
+          <End Role="Niveles" Type="Self.Niveles" Multiplicity="1" />
+          <End Role="Perfiles" Type="Self.Perfiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Niveles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Perfiles">
+              <PropertyRef Name="nivel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Perfil">
+          <End Role="Perfiles" Type="Self.Perfiles" Multiplicity="1" />
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfiles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="perfil_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Perfiles_Requerimientos">
+          <End Role="Perfiles" Type="Self.Perfiles" Multiplicity="1" />
+          <End Role="Requerimientos" Type="Self.Requerimientos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfiles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Requerimientos">
+              <PropertyRef Name="perfil_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Procedimiento_Niveles">
+          <End Role="Procedimientos" Type="Self.Procedimientos" Multiplicity="1" />
+          <End Role="Niveles" Type="Self.Niveles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Procedimientos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Niveles">
+              <PropertyRef Name="procedimiento_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitante">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="solicitante_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitud_PE">
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="1" />
+          <End Role="PrimerasEvaluaciones" Type="Self.PrimerasEvaluaciones" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitudes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PrimerasEvaluaciones">
+              <PropertyRef Name="solicitud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitud_SE">
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="1" />
+          <End Role="SegundasEvaluaciones" Type="Self.SegundasEvaluaciones" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitudes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SegundasEvaluaciones">
+              <PropertyRef Name="solicitud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitud_TE">
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="1" />
+          <End Role="TercerasEvaluaciones" Type="Self.TercerasEvaluaciones" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitudes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TercerasEvaluaciones">
+              <PropertyRef Name="solicitud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SolicitudesDeshechadas">
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="1" />
+          <End Role="SolicitudesDeshechadas" Type="Self.SolicitudesDeshechadas" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitudes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SolicitudesDeshechadas">
+              <PropertyRef Name="solicitud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Evaluadores">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Evaluadores" Type="Self.Evaluadores" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Evaluadores">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SACModelStoreContainer">
+          <EntitySet Name="Adjuntos" EntityType="Self.Adjuntos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Archivos" EntityType="Self.Archivos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Colegios" EntityType="Self.Colegios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ColegiosAsignados" EntityType="Self.ColegiosAsignados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Datos" EntityType="Self.Datos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Evaluadores" EntityType="Self.Evaluadores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Niveles" EntityType="Self.Niveles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfiles" EntityType="Self.Perfiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrimerasEvaluaciones" EntityType="Self.PrimerasEvaluaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Procedimientos" EntityType="Self.Procedimientos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requerimientos" EntityType="Self.Requerimientos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SegundasEvaluaciones" EntityType="Self.SegundasEvaluaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Solicitudes" EntityType="Self.Solicitudes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SolicitudesDeshechadas" EntityType="Self.SolicitudesDeshechadas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TercerasEvaluaciones" EntityType="Self.TercerasEvaluaciones" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Adjunto_Requerimiento" Association="Self.FK_Adjunto_Requerimiento">
+            <End Role="Requerimientos" EntitySet="Requerimientos" />
+            <End Role="Adjuntos" EntitySet="Adjuntos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adjunto_Solicitud" Association="Self.FK_Adjunto_Solicitud">
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+            <End Role="Adjuntos" EntitySet="Adjuntos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Archivo_Adjunto" Association="Self.FK_Archivo_Adjunto">
+            <End Role="Archivos" EntitySet="Archivos" />
+            <End Role="Adjuntos" EntitySet="Adjuntos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Archivo_PE" Association="Self.FK_Archivo_PE">
+            <End Role="Archivos" EntitySet="Archivos" />
+            <End Role="PrimerasEvaluaciones" EntitySet="PrimerasEvaluaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Archivo_SE" Association="Self.FK_Archivo_SE">
+            <End Role="Archivos" EntitySet="Archivos" />
+            <End Role="SegundasEvaluaciones" EntitySet="SegundasEvaluaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Archivo_TE" Association="Self.FK_Archivo_TE">
+            <End Role="Archivos" EntitySet="Archivos" />
+            <End Role="TercerasEvaluaciones" EntitySet="TercerasEvaluaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Colegio" Association="Self.FK_Colegio">
+            <End Role="Colegios" EntitySet="Colegios" />
+            <End Role="ColegiosAsignados" EntitySet="ColegiosAsignados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Colegios" Association="Self.FK_Colegios">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Colegios" EntitySet="Colegios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ColegiosAsignados" Association="Self.FK_ColegiosAsignados">
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+            <End Role="ColegiosAsignados" EntitySet="ColegiosAsignados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Datos_Users" Association="Self.FK_Datos_Users">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Datos" EntitySet="Datos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EvaluadorAsignado" Association="Self.FK_EvaluadorAsignado">
+            <End Role="Evaluadores" EntitySet="Evaluadores" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Niveles_Perfiles" Association="Self.FK_Niveles_Perfiles">
+            <End Role="Niveles" EntitySet="Niveles" />
+            <End Role="Perfiles" EntitySet="Perfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Perfil" Association="Self.FK_Perfil">
+            <End Role="Perfiles" EntitySet="Perfiles" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Perfiles_Requerimientos" Association="Self.FK_Perfiles_Requerimientos">
+            <End Role="Perfiles" EntitySet="Perfiles" />
+            <End Role="Requerimientos" EntitySet="Requerimientos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Procedimiento_Niveles" Association="Self.FK_Procedimiento_Niveles">
+            <End Role="Procedimientos" EntitySet="Procedimientos" />
+            <End Role="Niveles" EntitySet="Niveles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitante" Association="Self.FK_Solicitante">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitud_PE" Association="Self.FK_Solicitud_PE">
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+            <End Role="PrimerasEvaluaciones" EntitySet="PrimerasEvaluaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitud_SE" Association="Self.FK_Solicitud_SE">
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+            <End Role="SegundasEvaluaciones" EntitySet="SegundasEvaluaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitud_TE" Association="Self.FK_Solicitud_TE">
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+            <End Role="TercerasEvaluaciones" EntitySet="TercerasEvaluaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SolicitudesDeshechadas" Association="Self.FK_SolicitudesDeshechadas">
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+            <End Role="SolicitudesDeshechadas" EntitySet="SolicitudesDeshechadas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Evaluadores" Association="Self.FK_Usuarios_Evaluadores">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Evaluadores" EntitySet="Evaluadores" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SACModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Nivel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="procedimiento_id" Type="Int32" Nullable="false" />
+          <Property Name="creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Perfiles" Relationship="Self.FK_Niveles_Perfiles" FromRole="Niveles" ToRole="Perfiles" />
+          <NavigationProperty Name="Procedimientos" Relationship="Self.FK_Procedimiento_Niveles" FromRole="Niveles" ToRole="Procedimientos" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nivel_id" Type="Int32" Nullable="false" />
+          <Property Name="creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Niveles" Relationship="Self.FK_Niveles_Perfiles" FromRole="Perfiles" ToRole="Niveles" />
+          <NavigationProperty Name="Requerimientos" Relationship="Self.FK_Perfiles_Requerimientos" FromRole="Perfiles" ToRole="Requerimientos" />
+        </EntityType>
+        <EntityType Name="Procedimiento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="creacion" Type="DateTime" Precision="3" />
+          <Property Name="modificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Niveles" Relationship="Self.FK_Procedimiento_Niveles" FromRole="Procedimientos" ToRole="Niveles" />
+        </EntityType>
+        <EntityType Name="Requerimiento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="perfil_id" Type="Int32" Nullable="false" />
+          <Property Name="tipo_requerimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="creacion" Type="DateTime" Precision="3" />
+          <Property Name="modificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Perfiles" Relationship="Self.FK_Perfiles_Requerimientos" FromRole="Requerimientos" ToRole="Perfiles" />
+          <NavigationProperty Name="Adjuntos" Relationship="SACModel.FK_Adjunto_Requerimiento" FromRole="Requerimiento" ToRole="Adjunto" />
+        </EntityType>
+        <Association Name="FK_Niveles_Perfiles">
+          <End Role="Niveles" Type="SACModel.Nivel" Multiplicity="1" />
+          <End Role="Perfiles" Type="SACModel.Perfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Niveles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Perfiles">
+              <PropertyRef Name="nivel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Procedimiento_Niveles">
+          <End Role="Procedimientos" Type="SACModel.Procedimiento" Multiplicity="1" />
+          <End Role="Niveles" Type="SACModel.Nivel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Procedimientos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Niveles">
+              <PropertyRef Name="procedimiento_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Perfiles_Requerimientos">
+          <End Role="Perfiles" Type="SACModel.Perfil" Multiplicity="1" />
+          <End Role="Requerimientos" Type="SACModel.Requerimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfiles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Requerimientos">
+              <PropertyRef Name="perfil_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SACEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Niveles" EntityType="SACModel.Nivel" />
+          <EntitySet Name="Perfiles" EntityType="SACModel.Perfil" />
+          <EntitySet Name="Procedimientos" EntityType="SACModel.Procedimiento" />
+          <EntitySet Name="Requerimientos" EntityType="SACModel.Requerimiento" />
+          <AssociationSet Name="FK_Niveles_Perfiles" Association="Self.FK_Niveles_Perfiles">
+            <End Role="Niveles" EntitySet="Niveles" />
+            <End Role="Perfiles" EntitySet="Perfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Procedimiento_Niveles" Association="Self.FK_Procedimiento_Niveles">
+            <End Role="Procedimientos" EntitySet="Procedimientos" />
+            <End Role="Niveles" EntitySet="Niveles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Perfiles_Requerimientos" Association="Self.FK_Perfiles_Requerimientos">
+            <End Role="Perfiles" EntitySet="Perfiles" />
+            <End Role="Requerimientos" EntitySet="Requerimientos" />
+          </AssociationSet>
+          <EntitySet Name="AspNetUsers" EntityType="SACModel.AspNetUsers" />
+          <EntitySet Name="Solicitudes" EntityType="SACModel.Solicitud" />
+          <AssociationSet Name="FK_Solicitante" Association="SACModel.FK_Solicitante">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <EntitySet Name="Datos" EntityType="SACModel.Datos" />
+          <AssociationSet Name="FK_Datos_Users" Association="SACModel.FK_Datos_Users">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Datos" EntitySet="Datos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Perfil1" Association="SACModel.FK_Perfil1">
+            <End Role="Perfiles" EntitySet="Perfiles" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <EntitySet Name="Adjuntos" EntityType="SACModel.Adjunto" />
+          <EntitySet Name="Archivos" EntityType="SACModel.Archivo" />
+          <EntitySet Name="PrimerasEvaluaciones" EntityType="SACModel.PrimerasEvaluacione" />
+          <EntitySet Name="SegundasEvaluaciones" EntityType="SACModel.SegundasEvaluacione" />
+          <EntitySet Name="TercerasEvaluaciones" EntityType="SACModel.TercerasEvaluacione" />
+          <AssociationSet Name="FK_Adjunto_Requerimiento" Association="SACModel.FK_Adjunto_Requerimiento">
+            <End Role="Requerimiento" EntitySet="Requerimientos" />
+            <End Role="Adjunto" EntitySet="Adjuntos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adjunto_Solicitud" Association="SACModel.FK_Adjunto_Solicitud">
+            <End Role="Solicitud" EntitySet="Solicitudes" />
+            <End Role="Adjunto" EntitySet="Adjuntos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Archivo_Adjunto" Association="SACModel.FK_Archivo_Adjunto">
+            <End Role="Archivo" EntitySet="Archivos" />
+            <End Role="Adjunto" EntitySet="Adjuntos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Archivo_PE" Association="SACModel.FK_Archivo_PE">
+            <End Role="Archivo" EntitySet="Archivos" />
+            <End Role="PrimerasEvaluacione" EntitySet="PrimerasEvaluaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Archivo_SE" Association="SACModel.FK_Archivo_SE">
+            <End Role="Archivo" EntitySet="Archivos" />
+            <End Role="SegundasEvaluacione" EntitySet="SegundasEvaluaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Archivo_TE" Association="SACModel.FK_Archivo_TE">
+            <End Role="Archivo" EntitySet="Archivos" />
+            <End Role="TercerasEvaluacione" EntitySet="TercerasEvaluaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitud_PE" Association="SACModel.FK_Solicitud_PE">
+            <End Role="Solicitud" EntitySet="Solicitudes" />
+            <End Role="PrimerasEvaluacione" EntitySet="PrimerasEvaluaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitud_SE" Association="SACModel.FK_Solicitud_SE">
+            <End Role="Solicitud" EntitySet="Solicitudes" />
+            <End Role="SegundasEvaluacione" EntitySet="SegundasEvaluaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitud_TE" Association="SACModel.FK_Solicitud_TE">
+            <End Role="Solicitud" EntitySet="Solicitudes" />
+            <End Role="TercerasEvaluacione" EntitySet="TercerasEvaluaciones" />
+          </AssociationSet>
+          <EntitySet Name="Evaluadores" EntityType="SACModel.Evaluador" />
+          <AssociationSet Name="FK_Usuarios_Evaluadores" Association="SACModel.FK_Usuarios_Evaluadores">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Evaluadore" EntitySet="Evaluadores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EvaluadorAsignado" Association="SACModel.FK_EvaluadorAsignado">
+            <End Role="Evaluador" EntitySet="Evaluadores" />
+            <End Role="Solicitud" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <EntitySet Name="SolicitudesDeshechadas" EntityType="SACModel.SolicitudDeshechada" />
+          <AssociationSet Name="FK_SolicitudesDeshechadas" Association="SACModel.FK_SolicitudesDeshechadas">
+            <End Role="Solicitud" EntitySet="Solicitudes" />
+            <End Role="SolicitudesDeshechada" EntitySet="SolicitudesDeshechadas" />
+          </AssociationSet>
+          <EntitySet Name="Colegios" EntityType="SACModel.Colegio" />
+          <AssociationSet Name="FK_Colegios" Association="SACModel.FK_Colegios">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Colegio" EntitySet="Colegios" />
+          </AssociationSet>
+          <EntitySet Name="ColegiosAsignados" EntityType="SACModel.ColegioAsignado" />
+          <AssociationSet Name="FK_Colegio" Association="SACModel.FK_Colegio">
+            <End Role="Colegio" EntitySet="Colegios" />
+            <End Role="ColegiosAsignado" EntitySet="ColegiosAsignados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ColegiosAsignados" Association="SACModel.FK_ColegiosAsignados">
+            <End Role="Solicitud" EntitySet="Solicitudes" />
+            <End Role="ColegiosAsignado" EntitySet="ColegiosAsignados" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Solicitudes2" Relationship="SACModel.FK_Solicitante" FromRole="AspNetUsers" ToRole="Solicitudes" />
+          <NavigationProperty Name="Datos" Relationship="SACModel.FK_Datos_Users" FromRole="AspNetUsers" ToRole="Datos" />
+          <NavigationProperty Name="Evaluador" Relationship="SACModel.FK_Usuarios_Evaluadores" FromRole="AspNetUsers" ToRole="Evaluadore" />
+          <NavigationProperty Name="Colegio" Relationship="SACModel.FK_Colegios" FromRole="AspNetUsers" ToRole="Colegio" />
+        </EntityType>
+        <EntityType Name="Solicitud">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="solicitante_id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="numero_solicitud" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="perfil_id" Type="Int32" Nullable="false" />
+          <Property Name="resolucion_final" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="estatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Solicitante" Relationship="SACModel.FK_Solicitante" FromRole="Solicitudes" ToRole="AspNetUsers" />
+          <Property Name="entidad_federativa" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Perfiles1" Relationship="SACModel.FK_Perfil1" FromRole="Solicitudes" ToRole="Perfiles" />
+          <NavigationProperty Name="Adjuntos" Relationship="SACModel.FK_Adjunto_Solicitud" FromRole="Solicitud" ToRole="Adjunto" />
+          <NavigationProperty Name="PrimerasEvaluacione" Relationship="SACModel.FK_Solicitud_PE" FromRole="Solicitud" ToRole="PrimerasEvaluacione" />
+          <NavigationProperty Name="SegundasEvaluacione" Relationship="SACModel.FK_Solicitud_SE" FromRole="Solicitud" ToRole="SegundasEvaluacione" />
+          <NavigationProperty Name="TercerasEvaluacione" Relationship="SACModel.FK_Solicitud_TE" FromRole="Solicitud" ToRole="TercerasEvaluacione" />
+          <Property Name="evaluador_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Evaluador" Relationship="SACModel.FK_EvaluadorAsignado" FromRole="Solicitud" ToRole="Evaluador" />
+          <NavigationProperty Name="SolicitudesDeshechada" Relationship="SACModel.FK_SolicitudesDeshechadas" FromRole="Solicitud" ToRole="SolicitudesDeshechada" />
+          <NavigationProperty Name="ColegioAsignado" Relationship="SACModel.FK_ColegiosAsignados" FromRole="Solicitud" ToRole="ColegiosAsignado" />
+        </EntityType>
+        <Association Name="FK_Solicitante">
+          <End Type="SACModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="SACModel.Solicitud" Role="Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="solicitante_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Datos">
+          <Key>
+            <PropertyRef Name="usuario_id" />
+          </Key>
+          <Property Name="usuario_id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="primer_apellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="segundo_apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="genero" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nacionalidad" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="curp" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="domicilio" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="colonia" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="delegacion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="localidad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="codigo_postal" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="telefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="telefono_movil" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="medio" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Solicitante" Relationship="SACModel.FK_Datos_Users" FromRole="Datos" ToRole="AspNetUsers" />
+        </EntityType>
+        <Association Name="FK_Datos_Users">
+          <End Type="SACModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="SACModel.Datos" Role="Datos" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Datos">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Perfil1">
+          <End Type="SACModel.Perfil" Role="Perfiles" Multiplicity="1" />
+          <End Type="SACModel.Solicitud" Role="Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfiles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="perfil_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Adjunto">
+          <Key>
+            <PropertyRef Name="archivo_id" />
+          </Key>
+          <Property Name="archivo_id" Type="Int32" Nullable="false" />
+          <Property Name="solicitud_id" Type="Int32" Nullable="false" />
+          <Property Name="requerimiento_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Requerimiento" Relationship="SACModel.FK_Adjunto_Requerimiento" FromRole="Adjunto" ToRole="Requerimiento" />
+          <NavigationProperty Name="Solicitude" Relationship="SACModel.FK_Adjunto_Solicitud" FromRole="Adjunto" ToRole="Solicitud" />
+          <NavigationProperty Name="Archivo" Relationship="SACModel.FK_Archivo_Adjunto" FromRole="Adjunto" ToRole="Archivo" />
+        </EntityType>
+        <EntityType Name="Archivo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_archivo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="mime" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="path" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Adjunto" Relationship="SACModel.FK_Archivo_Adjunto" FromRole="Archivo" ToRole="Adjunto" />
+          <NavigationProperty Name="PrimerasEvaluaciones" Relationship="SACModel.FK_Archivo_PE" FromRole="Archivo" ToRole="PrimerasEvaluacione" />
+          <NavigationProperty Name="SegundasEvaluaciones" Relationship="SACModel.FK_Archivo_SE" FromRole="Archivo" ToRole="SegundasEvaluacione" />
+          <NavigationProperty Name="TercerasEvaluaciones" Relationship="SACModel.FK_Archivo_TE" FromRole="Archivo" ToRole="TercerasEvaluacione" />
+        </EntityType>
+        <EntityType Name="PrimerasEvaluacione">
+          <Key>
+            <PropertyRef Name="solicitud_id" />
+          </Key>
+          <Property Name="solicitud_id" Type="Int32" Nullable="false" />
+          <Property Name="archivo_id" Type="Int32" Nullable="false" />
+          <Property Name="resultado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="created" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" Precision="3" />
+          <Property Name="modified" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" Precision="3" />
+          <NavigationProperty Name="Archivo" Relationship="SACModel.FK_Archivo_PE" FromRole="PrimerasEvaluacione" ToRole="Archivo" />
+          <NavigationProperty Name="Solicitude" Relationship="SACModel.FK_Solicitud_PE" FromRole="PrimerasEvaluacione" ToRole="Solicitud" />
+        </EntityType>
+        <EntityType Name="SegundasEvaluacione">
+          <Key>
+            <PropertyRef Name="solicitud_id" />
+          </Key>
+          <Property Name="solicitud_id" Type="Int32" Nullable="false" />
+          <Property Name="archivo_id" Type="Int32" Nullable="false" />
+          <Property Name="resultado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="created" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" Precision="3" />
+          <Property Name="modified" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" Precision="3" />
+          <NavigationProperty Name="Archivo" Relationship="SACModel.FK_Archivo_SE" FromRole="SegundasEvaluacione" ToRole="Archivo" />
+          <NavigationProperty Name="Solicitude" Relationship="SACModel.FK_Solicitud_SE" FromRole="SegundasEvaluacione" ToRole="Solicitud" />
+        </EntityType>
+        <EntityType Name="TercerasEvaluacione">
+          <Key>
+            <PropertyRef Name="solicitud_id" />
+          </Key>
+          <Property Name="solicitud_id" Type="Int32" Nullable="false" />
+          <Property Name="archivo_id" Type="Int32" Nullable="false" />
+          <Property Name="resultado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="created" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" Precision="3" />
+          <Property Name="modified" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" Precision="3" />
+          <NavigationProperty Name="Archivo" Relationship="SACModel.FK_Archivo_TE" FromRole="TercerasEvaluacione" ToRole="Archivo" />
+          <NavigationProperty Name="Solicitude" Relationship="SACModel.FK_Solicitud_TE" FromRole="TercerasEvaluacione" ToRole="Solicitud" />
+        </EntityType>
+        <Association Name="FK_Adjunto_Requerimiento">
+          <End Type="SACModel.Requerimiento" Role="Requerimiento" Multiplicity="1" />
+          <End Type="SACModel.Adjunto" Role="Adjunto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requerimiento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Adjunto">
+              <PropertyRef Name="requerimiento_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adjunto_Solicitud">
+          <End Type="SACModel.Solicitud" Role="Solicitud" Multiplicity="1" />
+          <End Type="SACModel.Adjunto" Role="Adjunto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitud">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Adjunto">
+              <PropertyRef Name="solicitud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Archivo_Adjunto">
+          <End Type="SACModel.Archivo" Role="Archivo" Multiplicity="1" />
+          <End Type="SACModel.Adjunto" Role="Adjunto" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Archivo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Adjunto">
+              <PropertyRef Name="archivo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Archivo_PE">
+          <End Type="SACModel.Archivo" Role="Archivo" Multiplicity="1" />
+          <End Type="SACModel.PrimerasEvaluacione" Role="PrimerasEvaluacione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Archivo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PrimerasEvaluacione">
+              <PropertyRef Name="archivo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Archivo_SE">
+          <End Type="SACModel.Archivo" Role="Archivo" Multiplicity="1" />
+          <End Type="SACModel.SegundasEvaluacione" Role="SegundasEvaluacione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Archivo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SegundasEvaluacione">
+              <PropertyRef Name="archivo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Archivo_TE">
+          <End Type="SACModel.Archivo" Role="Archivo" Multiplicity="1" />
+          <End Type="SACModel.TercerasEvaluacione" Role="TercerasEvaluacione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Archivo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TercerasEvaluacione">
+              <PropertyRef Name="archivo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitud_PE">
+          <End Type="SACModel.Solicitud" Role="Solicitud" Multiplicity="1" />
+          <End Type="SACModel.PrimerasEvaluacione" Role="PrimerasEvaluacione" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitud">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PrimerasEvaluacione">
+              <PropertyRef Name="solicitud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitud_SE">
+          <End Type="SACModel.Solicitud" Role="Solicitud" Multiplicity="1" />
+          <End Type="SACModel.SegundasEvaluacione" Role="SegundasEvaluacione" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitud">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SegundasEvaluacione">
+              <PropertyRef Name="solicitud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitud_TE">
+          <End Type="SACModel.Solicitud" Role="Solicitud" Multiplicity="1" />
+          <End Type="SACModel.TercerasEvaluacione" Role="TercerasEvaluacione" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitud">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TercerasEvaluacione">
+              <PropertyRef Name="solicitud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Evaluador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="SACModel.FK_Usuarios_Evaluadores" FromRole="Evaluadore" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Solicitudes" Relationship="SACModel.FK_EvaluadorAsignado" FromRole="Evaluador" ToRole="Solicitud" />
+        </EntityType>
+        <Association Name="FK_Usuarios_Evaluadores">
+          <End Type="SACModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="SACModel.Evaluador" Role="Evaluadore" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Evaluadore">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EvaluadorAsignado">
+          <End Type="SACModel.Evaluador" Role="Evaluador" Multiplicity="0..1" />
+          <End Type="SACModel.Solicitud" Role="Solicitud" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evaluador">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Solicitud">
+              <PropertyRef Name="evaluador_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SolicitudDeshechada">
+          <Key>
+            <PropertyRef Name="solicitud_id" />
+          </Key>
+          <Property Name="solicitud_id" Type="Int32" Nullable="false" />
+          <Property Name="jefe_departamento" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="cargo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="documentos" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="created" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" Precision="3" />
+          <Property Name="modified" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" Precision="3" />
+          <NavigationProperty Name="Solicitude" Relationship="SACModel.FK_SolicitudesDeshechadas" FromRole="SolicitudesDeshechada" ToRole="Solicitud" />
+        </EntityType>
+        <Association Name="FK_SolicitudesDeshechadas">
+          <End Type="SACModel.Solicitud" Role="Solicitud" Multiplicity="1" />
+          <End Type="SACModel.SolicitudDeshechada" Role="SolicitudesDeshechada" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitud">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SolicitudesDeshechada">
+              <PropertyRef Name="solicitud_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Colegio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="SACModel.FK_Colegios" FromRole="Colegio" ToRole="AspNetUsers" />
+          <NavigationProperty Name="ColegiosAsignados" Relationship="SACModel.FK_Colegio" FromRole="Colegio" ToRole="ColegiosAsignado" />
+        </EntityType>
+        <Association Name="FK_Colegios">
+          <End Type="SACModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="SACModel.Colegio" Role="Colegio" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Colegio">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ColegioAsignado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="colegio_id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="jefe_departamento" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="cargo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="antecedente" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="periodo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="destinatario" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="puesto" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="universidad" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="created" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" Precision="3" />
+          <Property Name="modified" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" Precision="3" />
+          <NavigationProperty Name="Colegio" Relationship="SACModel.FK_Colegio" FromRole="ColegiosAsignado" ToRole="Colegio" />
+          <NavigationProperty Name="Solicitud" Relationship="SACModel.FK_ColegiosAsignados" FromRole="ColegiosAsignado" ToRole="Solicitud" />
+        </EntityType>
+        <Association Name="FK_Colegio">
+          <End Type="SACModel.Colegio" Role="Colegio" Multiplicity="1" />
+          <End Type="SACModel.ColegioAsignado" Role="ColegiosAsignado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colegio">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ColegiosAsignado">
+              <PropertyRef Name="colegio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ColegiosAsignados">
+          <End Type="SACModel.Solicitud" Role="Solicitud" Multiplicity="1" />
+          <End Type="SACModel.ColegioAsignado" Role="ColegiosAsignado" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitud">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ColegiosAsignado">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SACModelStoreContainer" CdmEntityContainer="SACEntities">
+          <EntitySetMapping Name="Niveles">
+            <EntityTypeMapping TypeName="SACModel.Nivel">
+              <MappingFragment StoreEntitySet="Niveles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="procedimiento_id" ColumnName="procedimiento_id" />
+                <ScalarProperty Name="creacion" ColumnName="creacion" />
+                <ScalarProperty Name="modificacion" ColumnName="modificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Perfiles">
+            <EntityTypeMapping TypeName="SACModel.Perfil">
+              <MappingFragment StoreEntitySet="Perfiles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="nivel_id" ColumnName="nivel_id" />
+                <ScalarProperty Name="creacion" ColumnName="creacion" />
+                <ScalarProperty Name="modificacion" ColumnName="modificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Procedimientos">
+            <EntityTypeMapping TypeName="SACModel.Procedimiento">
+              <MappingFragment StoreEntitySet="Procedimientos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="creacion" ColumnName="creacion" />
+                <ScalarProperty Name="modificacion" ColumnName="modificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requerimientos">
+            <EntityTypeMapping TypeName="SACModel.Requerimiento">
+              <MappingFragment StoreEntitySet="Requerimientos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="perfil_id" ColumnName="perfil_id" />
+                <ScalarProperty Name="tipo_requerimiento" ColumnName="tipo_requerimiento" />
+                <ScalarProperty Name="creacion" ColumnName="creacion" />
+                <ScalarProperty Name="modificacion" ColumnName="modificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="SACModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Solicitudes">
+            <EntityTypeMapping TypeName="SACModel.Solicitud">
+              <MappingFragment StoreEntitySet="Solicitudes">
+                <ScalarProperty Name="evaluador_id" ColumnName="evaluador_id" />
+                <ScalarProperty Name="entidad_federativa" ColumnName="entidad_federativa" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="resolucion_final" ColumnName="resolucion_final" />
+                <ScalarProperty Name="perfil_id" ColumnName="perfil_id" />
+                <ScalarProperty Name="numero_solicitud" ColumnName="numero_solicitud" />
+                <ScalarProperty Name="solicitante_id" ColumnName="solicitante_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Datos">
+            <EntityTypeMapping TypeName="SACModel.Datos">
+              <MappingFragment StoreEntitySet="Datos">
+                <ScalarProperty Name="medio" ColumnName="medio" />
+                <ScalarProperty Name="telefono_movil" ColumnName="telefono_movil" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
+                <ScalarProperty Name="localidad" ColumnName="localidad" />
+                <ScalarProperty Name="delegacion" ColumnName="delegacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="colonia" ColumnName="colonia" />
+                <ScalarProperty Name="domicilio" ColumnName="domicilio" />
+                <ScalarProperty Name="curp" ColumnName="curp" />
+                <ScalarProperty Name="nacionalidad" ColumnName="nacionalidad" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="segundo_apellido" ColumnName="segundo_apellido" />
+                <ScalarProperty Name="primer_apellido" ColumnName="primer_apellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adjuntos">
+            <EntityTypeMapping TypeName="SACModel.Adjunto">
+              <MappingFragment StoreEntitySet="Adjuntos">
+                <ScalarProperty Name="requerimiento_id" ColumnName="requerimiento_id" />
+                <ScalarProperty Name="solicitud_id" ColumnName="solicitud_id" />
+                <ScalarProperty Name="archivo_id" ColumnName="archivo_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Archivos">
+            <EntityTypeMapping TypeName="SACModel.Archivo">
+              <MappingFragment StoreEntitySet="Archivos">
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="mime" ColumnName="mime" />
+                <ScalarProperty Name="nombre_archivo" ColumnName="nombre_archivo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrimerasEvaluaciones">
+            <EntityTypeMapping TypeName="SACModel.PrimerasEvaluacione">
+              <MappingFragment StoreEntitySet="PrimerasEvaluaciones">
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="resultado" ColumnName="resultado" />
+                <ScalarProperty Name="archivo_id" ColumnName="archivo_id" />
+                <ScalarProperty Name="solicitud_id" ColumnName="solicitud_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SegundasEvaluaciones">
+            <EntityTypeMapping TypeName="SACModel.SegundasEvaluacione">
+              <MappingFragment StoreEntitySet="SegundasEvaluaciones">
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="resultado" ColumnName="resultado" />
+                <ScalarProperty Name="archivo_id" ColumnName="archivo_id" />
+                <ScalarProperty Name="solicitud_id" ColumnName="solicitud_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TercerasEvaluaciones">
+            <EntityTypeMapping TypeName="SACModel.TercerasEvaluacione">
+              <MappingFragment StoreEntitySet="TercerasEvaluaciones">
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="resultado" ColumnName="resultado" />
+                <ScalarProperty Name="archivo_id" ColumnName="archivo_id" />
+                <ScalarProperty Name="solicitud_id" ColumnName="solicitud_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Evaluadores">
+            <EntityTypeMapping TypeName="SACModel.Evaluador">
+              <MappingFragment StoreEntitySet="Evaluadores">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SolicitudesDeshechadas">
+            <EntityTypeMapping TypeName="SACModel.SolicitudDeshechada">
+              <MappingFragment StoreEntitySet="SolicitudesDeshechadas">
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="documentos" ColumnName="documentos" />
+                <ScalarProperty Name="cargo" ColumnName="cargo" />
+                <ScalarProperty Name="jefe_departamento" ColumnName="jefe_departamento" />
+                <ScalarProperty Name="solicitud_id" ColumnName="solicitud_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colegios">
+            <EntityTypeMapping TypeName="SACModel.Colegio">
+              <MappingFragment StoreEntitySet="Colegios">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ColegiosAsignados">
+            <EntityTypeMapping TypeName="SACModel.ColegioAsignado">
+              <MappingFragment StoreEntitySet="ColegiosAsignados">
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="universidad" ColumnName="universidad" />
+                <ScalarProperty Name="puesto" ColumnName="puesto" />
+                <ScalarProperty Name="destinatario" ColumnName="destinatario" />
+                <ScalarProperty Name="periodo" ColumnName="periodo" />
+                <ScalarProperty Name="antecedente" ColumnName="antecedente" />
+                <ScalarProperty Name="cargo" ColumnName="cargo" />
+                <ScalarProperty Name="jefe_departamento" ColumnName="jefe_departamento" />
+                <ScalarProperty Name="colegio_id" ColumnName="colegio_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

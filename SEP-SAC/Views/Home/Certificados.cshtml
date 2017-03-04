@@ -1,0 +1,92 @@
+﻿@model IEnumerable<SEP_SAC.Models.Procedimiento>
+
+@{
+    ViewBag.Title = "Certificados";
+    Layout = "~/Views/Shared/Default.cshtml";
+}
+
+<div class="fondo-gris-claro">
+    <div class="container">
+        <div class="row" style="padding-top: 50px;">
+            <div class="col m12 s12 center-align">
+                <img src="/img/certificados.png" style="width:400px; max-width:100%;">
+            </div>
+        </div>
+
+        <div class="row" style="padding-bottom: 25px; margin-bottom:0px;">
+            <div class="col m12 s12 center-align">
+                <img src="/img/logos/logo-sep.png" class="banner-sep-logo">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row">
+
+        @foreach (var procedimiento in Model)
+        {
+            foreach (var nivel in procedimiento.Niveles)
+            {
+
+                if (nivel.Perfiles.Count > 0)
+                {
+                    <h2 class="color-gris-oscuro">@nivel.nombre</h2>
+                }
+
+                foreach (var perfil in nivel.Perfiles)
+                {
+                    <a href="#modal" class="color-gris-oscuro perfil-item" perfil="@perfil.id">@perfil.nombre</a>
+                }
+            }
+        }
+
+    </div>
+
+</div>
+
+ <!-- Modal Structure -->
+<div id="modal-perfiles" class="modal">
+    <div class="modal-content">
+        
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script type="text/javascript">
+        $('.perfil-item').click(function () {
+            var myform = document.getElementById("prospectoClientesForm");
+            var forma = new FormData(myform);
+            $.ajax({
+                url: "/Home/Certificado/"+$(this).attr('perfil'),
+                type: "POST",
+                data: forma,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    $('#modal-perfiles .modal-content').html(data);
+                    $('#modal-perfiles').modal('open');
+                    var alto = $('#info-documentos').height();
+                    $('#info-registrate').css('height', alto + 'px');
+                },
+                error: function (jqxhr, textStatus, errorThrown) {
+                    console.log(jqxhr);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+        });
+    </script>
+    
+}

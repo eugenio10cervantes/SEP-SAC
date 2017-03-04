@@ -1,0 +1,590 @@
+﻿@model SEP_SAC.Models.RegisterViewModel 
+@{
+    ViewBag.Title = "Registro";
+    Layout = "~/Views/Shared/Default.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form", id="FormaRegistro" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="col m10 s12 offset-m1" style="background-color: rgb(244,244,244);">
+
+                <div class="row">
+
+                    <div class="col s10 offset-s1">
+
+                        <div class="row">
+                            <div class="col s12 center-align">
+                                <h1 class="color-gris-claro">Registro</h1>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" name="nombre" id="RegistroNombre" />
+                                <label for="RegistroNombre" class="color-gris-oscuro font-bold">Nombre(s) <label id="RegistroNombre-error" class="error" for="RegistroNombre" style="display:none;">*Requerido</label></label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input type="text" id="RegistroPrimerApellido" name="primer_apellido" />
+                                <label for="RegistroPrimerApellido" class="color-gris-oscuro font-bold">Primer Apellido <label id="RegistroPrimerApellido-error" class="error" for="RegistroPrimerApellido" style="display:none;">*Requerido</label></label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input type="text" id="RegistroSegundoApellido" name="segundo_apellido" />
+                                <label for="RegistroSegundoApellido" class="color-gris-oscuro font-bold">Segundo Apellido</label>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin:0px;">
+                            <div class="col s6" style="padding-left:0px;">
+                                <span class="color-gris-oscuro font-bold">Fecha de nacimiento: <label id="RegistroFechaNacimiento-error" class="error" for="RegistroFechaNacimiento" style="display:none;">*Requerido</label></span>
+                            </div>
+
+                            <div class="col s6">
+                                <span class="color-gris-oscuro font-bold">Género:</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input type="text" class="datepicker" placeholder="Selecciona para abrir el calendario" name="fecha_nacimiento" id="RegistroFechaNacimiento" />
+                            </div>
+
+                            <div class="input-field col s6">
+                                <input name="genero" type="radio" id="test1" />
+                                <label for="test1" class="color-gris-oscuro font-bold">Hombre</label>
+
+                                <input name="genero" type="radio" id="test2" />
+                                <label for="test2" class="color-gris-oscuro font-bold">Mujer</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s6">
+
+                                <select id="RegistroNacionalidad" name="nacionalidad">
+                                    <option>Nacionalidad</option>
+                                    <option value="México">México</option>
+                                    <option value="Afganistán">Afganistán</option>
+                                    <option value="Africa del Sur">Africa del Sur</option>
+                                    <option value="Albania">Albania</option>
+                                    <option value="Alemania">Alemania</option>
+                                    <option value="Andorra">Andorra</option>
+                                    <option value="Angola">Angola</option>
+                                    <option value="Antigua y Barbuda">Antigua y Barbuda</option>
+                                    <option value="Antillas Holandesas">Antillas Holandesas</option>
+                                    <option value="Arabia Saudita">Arabia Saudita</option>
+                                    <option value="Argelia">Argelia</option>
+                                    <option value="Argentina">Argentina</option>
+                                    <option value="Armenia">Armenia</option>
+                                    <option value="Aruba">Aruba</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="Austria">Austria</option>
+                                    <option value="Azerbaijan">Azerbaijan</option>
+                                    <option value="Bahamas">Bahamas</option>
+                                    <option value="Bahrain">Bahrain</option>
+                                    <option value="Bangladesh">Bangladesh</option>
+                                    <option value="Barbados">Barbados</option>
+                                    <option value="Belarusia">Belarusia</option>
+                                    <option value="Bélgica">Bélgica</option>
+                                    <option value="Bélice">Bélice</option>
+                                    <option value="Benin">Benin</option>
+                                    <option value="Bermudas">Bermudas</option>
+                                    <option value="Bolivia">Bolivia</option>
+                                    <option value="Bosnia">Bosnia</option>
+                                    <option value="Botswana">Botswana</option>
+                                    <option value="Brasil">Brasil</option>
+                                    <option value="Brunei Darussulam">Brunei Darussulam</option>
+                                    <option value="Bulgaria">Bulgaria</option>
+                                    <option value="Burkina Faso">Burkina Faso</option>
+                                    <option value="Burundi">Burundi</option>
+                                    <option value="Butan">Butan</option>
+                                    <option value="Camboya">Camboya</option>
+                                    <option value="Camerun">Camerun</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="Cape Verde">Cape Verde</option>
+                                    <option value="Chad">Chad</option>
+                                    <option value="Chile">Chile</option>
+                                    <option value="China">China</option>
+                                    <option value="Chipre">Chipre</option>
+                                    <option value="Colombia">Colombia</option>
+                                    <option value="Comoros">Comoros</option>
+                                    <option value="Congo">Congo</option>
+                                    <option value="Corea del Norte">Corea del Norte</option>
+                                    <option value="Corea del Sur">Corea del Sur</option>
+                                    <option value="Costa de Marfíl">Costa de Marfíl</option>
+                                    <option value="Costa Rica">Costa Rica</option>
+                                    <option value="Croasia">Croasia</option>
+                                    <option value="Cuba">Cuba</option>
+                                    <option value="Dinamarca">Dinamarca</option>
+                                    <option value="Djibouti">Djibouti</option>
+                                    <option value="Dominica">Dominica</option>
+                                    <option value="Ecuador">Ecuador</option>
+                                    <option value="Egipto">Egipto</option>
+                                    <option value="El Salvador">El Salvador</option>
+                                    <option value="Emiratos Arabes Unidos">Emiratos Arabes Unidos</option>
+                                    <option value="Eritrea">Eritrea</option>
+                                    <option value="Eslovenia">Eslovenia</option>
+                                    <option value="España">España</option>
+                                    <option value="Estados Unidos">Estados Unidos</option>
+                                    <option value="Estonia">Estonia</option>
+                                    <option value="Etiopia">Etiopia</option>
+                                    <option value="Fiji">Fiji</option>
+                                    <option value="Filipinas">Filipinas</option>
+                                    <option value="Finlandia">Finlandia</option>
+                                    <option value="Francia">Francia</option>
+                                    <option value="Gabon">Gabon</option>
+                                    <option value="Gambia">Gambia</option>
+                                    <option value="Georgia">Georgia</option>
+                                    <option value="Ghana">Ghana</option>
+                                    <option value="Granada">Granada</option>
+                                    <option value="Grecia">Grecia</option>
+                                    <option value="Groenlandia">Groenlandia</option>
+                                    <option value="Guadalupe">Guadalupe</option>
+                                    <option value="Guam">Guam</option>
+                                    <option value="Guatemala">Guatemala</option>
+                                    <option value="Guayana Francesa">Guayana Francesa</option>
+                                    <option value="Guerney">Guerney</option>
+                                    <option value="Guinea">Guinea</option>
+                                    <option value="Guinea-Bissau">Guinea-Bissau</option>
+                                    <option value="Guinea Equatorial">Guinea Equatorial</option>
+                                    <option value="Guyana">Guyana</option>
+                                    <option value="Haiti">Haiti</option>
+                                    <option value="Holanda">Holanda</option>
+                                    <option value="Honduras">Honduras</option>
+                                    <option value="Hong Kong">Hong Kong</option>
+                                    <option value="Hungria">Hungria</option>
+                                    <option value="India">India</option>
+                                    <option value="Indonesia">Indonesia</option>
+                                    <option value="Irak">Irak</option>
+                                    <option value="Iran">Iran</option>
+                                    <option value="Irlanda">Irlanda</option>
+                                    <option value="Islandia">Islandia</option>
+                                    <option value="Islas Caiman">Islas Caiman</option>
+                                    <option value="Islas Faroe">Islas Faroe</option>
+                                    <option value="Islas Malvinas">Islas Malvinas</option>
+                                    <option value="Islas Marshall">Islas Marshall</option>
+                                    <option value="Islas Solomon">Islas Solomon</option>
+                                    <option value="Islas Virgenes Britanicas">Islas Virgenes Britanicas</option>
+                                    <option value="Islas Virgenes (U.S.)">Islas Virgenes (U.S.)</option>
+                                    <option value="Israel">Israel</option>
+                                    <option value="Italia">Italia</option>
+                                    <option value="Jamaica">Jamaica</option>
+                                    <option value="Japon">Japon</option>
+                                    <option value="Jersey">Jersey</option>
+                                    <option value="Jordania">Jordania</option>
+                                    <option value="Kazakhstan">Kazakhstan</option>
+                                    <option value="Kenia">Kenia</option>
+                                    <option value="Kiribati">Kiribati</option>
+                                    <option value="Kuwait">Kuwait</option>
+                                    <option value="Kyrgyzstan">Kyrgyzstan</option>
+                                    <option value="Laos">Laos</option>
+                                    <option value="Latvia">Latvia</option>
+                                    <option value="Lesotho">Lesotho</option>
+                                    <option value="Libano">Libano</option>
+                                    <option value="Liberia">Liberia</option>
+                                    <option value="Libia">Libia</option>
+                                    <option value="Liechtenstein">Liechtenstein</option>
+                                    <option value="Lituania">Lituania</option>
+                                    <option value="Luxemburgo">Luxemburgo</option>
+                                    <option value="Macao">Macao</option>
+                                    <option value="Macedonia">Macedonia</option>
+                                    <option value="Madagascar">Madagascar</option>
+                                    <option value="Malasia">Malasia</option>
+                                    <option value="Malawi">Malawi</option>
+                                    <option value="Maldivas">Maldivas</option>
+                                    <option value="Mali">Mali</option>
+                                    <option value="Malta">Malta</option>
+                                    <option value="Marruecos">Marruecos</option>
+                                    <option value="Martinica">Martinica</option>
+                                    <option value="Mauricio">Mauricio</option>
+                                    <option value="Mauritania">Mauritania</option>
+                                    <option value="Micronesia">Micronesia</option>
+                                    <option value="Moldova">Moldova</option>
+                                    <option value="Monaco">Monaco</option>
+                                    <option value="Mongolia">Mongolia</option>
+                                    <option value="Mozambique">Mozambique</option>
+                                    <option value="Myanmar (Burma)">Myanmar (Burma)</option>
+                                    <option value="Namibia">Namibia</option>
+                                    <option value="Nepal">Nepal</option>
+                                    <option value="Nicaragua">Nicaragua</option>
+                                    <option value="Niger">Niger</option>
+                                    <option value="Nigeria">Nigeria</option>
+                                    <option value="Noruega">Noruega</option>
+                                    <option value="Nueva Caledonia">Nueva Caledonia</option>
+                                    <option value="Nueva Zealandia">Nueva Zealandia</option>
+                                    <option value="Oman">Oman</option>
+                                    <option value="Pakistan">Pakistan</option>
+                                    <option value="Palestina">Palestina</option>
+                                    <option value="Panama">Panama</option>
+                                    <option value="Papua Nueva Guinea">Papua Nueva Guinea</option>
+                                    <option value="Paraguay">Paraguay</option>
+                                    <option value="Peru">Peru</option>
+                                    <option value="Polinesia Francesa">Polinesia Francesa</option>
+                                    <option value="Polonia">Polonia</option>
+                                    <option value="Portugal">Portugal</option>
+                                    <option value="Puerto Rico">Puerto Rico</option>
+                                    <option value="Qatar">Qatar</option>
+                                    <option value="Reino Unido">Reino Unido</option>
+                                    <option value="Republica Centroafricana">Republica Centroafricana</option>
+                                    <option value="Republica Checa">Republica Checa</option>
+                                    <option value="Republica Democratica del Congo">Republica Democratica del Congo</option>
+                                    <option value="Republica Dominicana">Republica Dominicana</option>
+                                    <option value="Republica Eslovaca">Republica Eslovaca</option>
+                                    <option value="Reunion">Reunion</option>
+                                    <option value="Ruanda">Ruanda</option>
+                                    <option value="Rumania">Rumania</option>
+                                    <option value="Rusia">Rusia</option>
+                                    <option value="Sahara">Sahara</option>
+                                    <option value="Samoa">Samoa</option>
+                                    <option value="San Cristobal-Nevis (St. Kitts)">San Cristobal-Nevis (St. Kitts)</option>
+                                    <option value="San Marino">San Marino</option>
+                                    <option value="San Vincente y las Granadinas">San Vincente y las Granadinas</option>
+                                    <option value="Santa Helena">Santa Helena</option>
+                                    <option value="Santa Lucia">Santa Lucia</option>
+                                    <option value="Santa Sede (Vaticano)">Santa Sede (Vaticano)</option>
+                                    <option value="Sao Tome & Principe">Sao Tome & Principe</option>
+                                    <option value="Senegal">Senegal</option>
+                                    <option value="Seychelles">Seychelles</option>
+                                    <option value="Sierra Leona">Sierra Leona</option>
+                                    <option value="Singapur">Singapur</option>
+                                    <option value="Siria">Siria</option>
+                                    <option value="Somalia">Somalia</option>
+                                    <option value="Sri Lanka (Ceilan)">Sri Lanka (Ceilan)</option>
+                                    <option value="Sudan">Sudan</option>
+                                    <option value="Suecia">Suecia</option>
+                                    <option value="Suiza">Suiza</option>
+                                    <option value="Sur Africa">Sur Africa</option>
+                                    <option value="Surinam">Surinam</option>
+                                    <option value="Swaziland">Swaziland</option>
+                                    <option value="Tailandia">Tailandia</option>
+                                    <option value="Taiwan">Taiwan</option>
+                                    <option value="Tajikistan">Tajikistan</option>
+                                    <option value="Tanzania">Tanzania</option>
+                                    <option value="Timor Oriental">Timor Oriental</option>
+                                    <option value="Togo">Togo</option>
+                                    <option value="Tokelau">Tokelau</option>
+                                    <option value="Tonga">Tonga</option>
+                                    <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+                                    <option value="Tunisia">Tunisia</option>
+                                    <option value="Turkmenistan">Turkmenistan</option>
+                                    <option value="Turquia">Turquia</option>
+                                    <option value="Ucrania">Ucrania</option>
+                                    <option value="Uganda">Uganda</option>
+                                    <option value="Union Europea">Union Europea</option>
+                                    <option value="Uruguay">Uruguay</option>
+                                    <option value="Uzbekistan">Uzbekistan</option>
+                                    <option value="Vanuatu">Vanuatu</option>
+                                    <option value="Venezuela">Venezuela</option>
+                                    <option value="Vietnam">Vietnam</option>
+                                    <option value="Yemen">Yemen</option>
+                                    <option value="Yugoslavia">Yugoslavia</option>
+                                    <option value="Zambia">Zambia</option>
+                                    <option value="Zimbabwe">Zimbabwe</option>
+                                </select>
+                            </div>
+
+                            <div class="input-field col s6 right-align">
+                                <input type="text" name="curp" id="RegistroCurp" />
+                                <label for="RegistroCurp" class="color-gris-oscuro font-bold">CURP</label>
+                                <a href="#">Consulta tu CURP aquí</a>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input type="text" id="RegistroDomicilio" name="domicilio" />
+                                <label for="RegistroDomicilio" class="color-gris-oscuro font-bold">Domicilio <label id="RegistroDomicilio-error" class="error" for="RegistroDomicilio" style="display:none;">*Requerido</label></label>
+                            </div>
+
+                            <div class="input-field col s6">
+                                <input type="text" id="RegistroColonia" name="colonia" />
+                                <label for="RegistroColonia" class="color-gris-oscuro font-bold">Colonia <label id="RegistroColonia-error" class="error" for="RegistroColonia" style="display:none;">*Requerido</label></label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s6">
+
+                                <select id="RegistroEntidadFederativa" name="estado">
+                                    <option value="Aguascalientes">Aguascalientes</option>
+                                    <option value="Baja California">Baja California</option>
+                                    <option value="Baja California Sur">Baja California Sur</option>
+                                    <option value="Campeche">Campeche</option>
+                                    <option value="Chiapas">Chiapas</option>
+                                    <option value="Chihuahua">Chihuahua</option>
+                                    <option value="Coahuila">Coahuila</option>
+                                    <option value="Colima">Colima</option>
+                                    <option value="Distrito Federal">Distrito Federal</option>
+                                    <option value="Durango">Durango</option>
+                                    <option value="Estado de México">Estado de México</option>
+                                    <option value="Guanajuato">Guanajuato</option>
+                                    <option value="Guerrero">Guerrero</option>
+                                    <option value="Hidalgo">Hidalgo</option>
+                                    <option value="Jalisco">Jalisco</option>
+                                    <option value="Michoacán">Michoacán</option>
+                                    <option value="Morelos">Morelos</option>
+                                    <option value="Nayarit">Nayarit</option>
+                                    <option value="Nuevo León">Nuevo León</option>
+                                    <option value="Oaxaca">Oaxaca</option>
+                                    <option value="Puebla">Puebla</option>
+                                    <option value="Querétaro">Querétaro</option>
+                                    <option value="Quintana Roo">Quintana Roo</option>
+                                    <option value="San Luis Potosí">San Luis Potosí</option>
+                                    <option value="Sin Localidad">Sin Localidad</option>
+                                    <option value="Sinaloa">Sinaloa</option>
+                                    <option value="Sonora">Sonora</option>
+                                    <option value="Tabasco">Tabasco</option>
+                                    <option value="Tamaulipas">Tamaulipas</option>
+                                    <option value="Tlaxcala">Tlaxcala</option>
+                                    <option value="Veracruz">Veracruz</option>
+                                    <option value="Yucatán">Yucatán</option>
+                                    <option value="Zacatecas">Zacatecas</option>
+                                </select>
+                            </div>
+
+                            <div class="input-field col s6">
+                                <input type="text" name="delegacion" id="RegistroDelegacion" />
+                                <label for="RegistroDelegacion" class="color-gris-oscuro font-bold">Delegación/Municipio <label id="RegistroDelegacion-error" class="error" for="RegistroDelegacion" style="display:none;">*Requerido</label></label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input type="text" name="localidad" id="RegistroLocalidad" />
+                                <label for="nombre" class="color-gris-oscuro font-bold">Localidad</label>
+                            </div>
+
+                            <div class="input-field col s6">
+                                <input type="text" name="codigo_postal" id="RegistroCodigoPostal" />
+                                <label for="RegistroCodigoPostal" class="color-gris-oscuro font-bold">Código Postal <label id="RegistroCodigoPostal-error" class="error" for="RegistroCodigoPostal" style="display:none;">*Requerido</label></label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input type="text" name="telefono" id="RegistroTelefono" />
+                                <label for="RegistroTelefono" class="color-gris-oscuro font-bold">Teléfono <label id="RegistroTelefono-error" class="error" for="RegistroTelefono" style="display:none;">*Requerido</label></label>
+                            </div>
+
+                            <div class="input-field col s6">
+                                <input type="text" name="telefono_movil" id="RegistroTelefonoMovil" />
+                                <label for="RegistroTelefonoMovil" class="color-gris-oscuro font-bold">Teléfono Móvil <label id="RegistroTelefonoMovil-error" class="error" for="RegistroTelefonoMovil" style="display:none;">*Requerido</label></label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s8">
+
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @id="RegistroCorreoElectronico" })
+                                <label for="RegistroCorreoElectronico" class="color-gris-oscuro font-bold">Correo electrónico <label id="RegistroCorreoElectronico-error" class="error" for="RegistroCorreoElectronico" style="display:none;">*Requerido</label></label>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="input-field col s8">
+                                <input type="text" name="confirmar_correo_electronico" id="RegistroConfirmarCorreoElectronico" />
+                                <label for="RegistroConfirmarCorreoElectronico" class="color-gris-oscuro font-bold">Confirmación correo electrónico</label>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="input-field col s6">
+                                
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @id = "RegistroPassword" })                                
+                                <label for="RegistroPassword" class="color-gris-oscuro font-bold">Password <label id="RegistroPassword-error" class="error" for="RegistroPassword" style="display:none;">*Requerido</label></label>
+                            </div>
+
+                            <div class="input-field col s6">
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @id = "RegistroConfirmarPassword" })
+                                <label for="RegistroConfirmarPassword" class="color-gris-oscuro font-bold">Confirmar password</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s10">
+                                <h1 class="color-gris-oscuro">¿Por qué medio se enteró de este programa de acreditación?</h1>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s4">
+                                <input name="medio" type="radio" id="_test1" value="Internet" />
+                                <label for="_test1" class="color-gris-oscuro font-bold">Internet</label>
+                            </div>
+                            <div class="col s4">
+                                <input name="medio" type="radio" id="_test2" value="Centro de trabajo" />
+                                <label for="_test2" class="color-gris-oscuro font-bold">Centro de trabajo</label>
+                            </div>
+                            <div class="col s4">
+                                <input name="medio" type="radio" id="test3" value="Institución Educativa"/>
+                                <label for="test3" class="color-gris-oscuro font-bold">Institución Educativa</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s4">
+                                <input name="medio" type="radio" id="test4" value="Cartel o Folleto" />
+                                <label for="test4" class="color-gris-oscuro font-bold">Cartel o Folleto</label>
+                            </div>
+                            <div class="col s4">
+                                <input name="medio" type="radio" id="test5" value="Recomendación"/>
+                                <label for="test5" class="color-gris-oscuro font-bold">Recomendación</label>
+                            </div>
+                            <div class="col s4">
+                                <input name="medio" type="radio" id="test6" value="Otro"/>
+                                <label for="test6" class="color-gris-oscuro font-bold">Otro</label>
+                            </div>
+                        </div>
+
+                        <div class="row" style="background-color: rgb(201,201,201); padding-top: 25px; padding-bottom: 25px;">
+                            <div class="barra-scroll" style="max-height: 200px; overflow: auto; margin-right:10px;">
+
+                                <div class="col s10 offset-s1">
+
+                                    <h2 class="color-gris-oscuro" style="margin:0px;">Aviso de conformidad</h2>
+
+                                    <p class="color-gris-oscuro">
+                                        1.	Conozco y acepto el contenido de las Normas Generales para la Acreditación y Certificación de conocimientos terminales correspondientes a estudios del tipo superior y aquellos del tipo medio superior referidos a la educación profesional que no requiere bachillerato o sus equivalentes, adquiridos en forma autodidacta o a través de la experiencia laboral, emitidas por la Dirección General de Acreditación, Incorporación y Revalidación de la Secretaría de Educación Pública, mediante oficio circular No. DGAIR/005/2011, de fecha 16 de febrero de 2011; las obligaciones y consecuencias que asumo de sujetarme a los procedimientos previstos en dichas normas, y manifiesto bajo protesta de decir verdad que me sujeto a las mismas y a las evaluaciones derivadas de la misma de manera voluntaria. De igual forma manifiesto que la información que se proporciona en la solicitud de registro es verídica.
+                                    </p>
+
+                                    <p class="color-gris-oscuro">
+                                        2.	Doy mi consentimiento a la Dirección General de Acreditación, Incorporación y Revalidación de la Secretaría de Educación Pública, para que en términos del artículo 21 de la Ley Federal de Transparencia y Acceso a la Información Pública Gubernamental, haga uso de mis datos personales para el desahogo del presente procedimiento.
+                                    </p>
+
+                                    <p class="color-gris-oscuro">
+                                        3.	Los datos personales y académicos serán protegidos en términos de lo dispuesto por la Ley Federal de Transparencia y Acceso a la Información Pública Gubernamental y la Ley Federal de Protección de Datos en Posesión de Particulares, lo anterior, sin perjuicio de que estoy enterado de que en términos del artículo 22, fracción III de la citada Ley, no es necesario mi consentimiento respecto de información que se transmita entre sujetos obligados o entre dependencias y entidades, cuando los datos respectivos se utilicen para el ejercicio de facultades propias de los mismos.
+                                    </p>
+
+                                    <p class="color-gris-oscuro">
+                                        4.	De conformidad con lo establecido en el artículo 35, fracción II de la Ley Federa de Procedimiento Administrativo, acepto expresamente que toda comunicación y o notificación relacionada con este trámite, se realice a través de correo electrónico, por lo que asumo la responsabilidad de verificar periódicamente los mensajes recibidos en el mismo y notificar en su caso el cambio de correo electrónico.
+                                    </p>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12 center-align">
+                                <input type="hidden" name="data[User][aviso]" id="UserAviso_" value="0"><input type="checkbox" name="data[User][aviso]" value="1" id="UserAviso">
+                                <label for="UserAviso" class="color-gris-oscuro font-bold">Acepto el aviso de conformidad</label> <label id="aviso-error" class="error" for="data[User][aviso]" style="display:none;"></label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12 center-align">
+                                <input type="submit" value="Registrar" class="btn" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+
+        $('.datepicker').pickadate({
+            monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            weekdaysShort: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
+            clear: 'borrar',
+            formatSubmit: 'yyyy-mm-dd',
+            min: new Date(1900, 1, 1),
+            max: true,
+            selectMonths: true,
+            selectYears: 100,
+            today: 'hoy',
+            close: 'cerrar'
+        });
+
+        $("#FormaRegistro").validate({
+
+            rules: {
+
+                "nombre":
+                {
+                    required: true
+                },
+                "primer_apellido":
+                {
+                    required: true
+                },
+                "fecha_nacimiento":
+                {
+                    required: true
+                },
+                "domicilio":
+                {
+                    required: true
+                },
+                "colonia":
+                {
+                    required: true
+                },
+                "delegacion":
+                {
+                    required: true
+                },
+                "codigo_postal":
+                {
+                    required: true,
+                    number: true
+                },
+                "telefono":
+                {
+                    required: true,
+                    number: true
+                },
+                "telefono_movil":
+                {
+                    required: true,
+                    number: true
+                },
+                "Email":
+                {
+                    required: true,
+                    email: true
+                },
+                "Password":
+                {
+                    required: true
+                },
+                "groupGenero":
+                {
+                    required: true
+                },
+                "groupAbajo":
+                {
+                    required: true
+                },
+                "data[User][aviso]":
+                {
+                    required: true
+                }
+
+            }
+
+        });
+
+    </script>
+}

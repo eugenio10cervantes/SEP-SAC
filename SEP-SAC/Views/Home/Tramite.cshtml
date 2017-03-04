@@ -1,0 +1,206 @@
+﻿@model SEP_SAC.Models.Perfil
+
+@{
+    ViewBag.Title = "Tramite";
+    Layout = "~/Views/Shared/Default.cshtml";
+}
+
+<style type="text/css">
+    .proc-nivel {
+        display: block;
+        font-weight: bold;
+        font-size: 22px;
+    }
+
+    .color-gris-claro {
+        color: #A0a0a0;
+    }
+
+    .carrera {
+        display: block;
+        font-weight: bold;
+        font-size: 26px;
+        margin-top: 25px;
+    }
+
+    .btn {
+        text-transform: inherit;
+    }
+
+    ::-webkit-input-placeholder {
+   color: red;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: red;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: red;  
+}
+
+:-ms-input-placeholder {  
+   color: red;  
+}
+</style>
+
+<div class="container">
+    <div class="row">
+
+        <form method="post" enctype="multipart/form-data">
+
+            <input type="hidden" name="perfil_id" value="@Model.id" />
+
+            <div class="col m10 s12 offset-m1" style="background-color: rgb(244,244,244); border-radius:30px;">
+
+                <div class="row">
+                    <div class="col s10 offset-s1">
+
+                        <div class="row">
+                            <div class="col s12 center-align">
+                                <h1 class="color-gris-claro"><img src="/img/certificado-negro-gris.png" style="vertical-align:middle; width:40px;"> Registro de Solicitud</h1>
+
+                                <span class="color-gris-claro proc-nivel">Procedimiento  @Model.Niveles.Procedimientos.nombre</span>
+                                <span class="color-gris-claro proc-nivel">@Model.Niveles.nombre</span>
+                                <span class="carrera color-gris-oscuro">@Model.nombre</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12">
+                                <h1 class="color-gris-oscuro">@ViewBag.nombre_completo</h1>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom:50px;">
+                            <div class="col s6 input-field">
+                                <select name="entidad_federativa">
+                                    <option value="Aguascalientes">Aguascalientes</option>
+                                    <option value="Baja California">Baja California</option>
+                                    <option value="Baja California Sur">Baja California Sur</option>
+                                    <option value="Campeche">Campeche</option>
+                                    <option value="Chiapas">Chiapas</option>
+                                    <option value="Chihuahua">Chihuahua</option>
+                                    <option value="Coahuila">Coahuila</option>
+                                    <option value="Colima">Colima</option>
+                                    <option value="Distrito Federal">Distrito Federal</option>
+                                    <option value="Durango">Durango</option>
+                                    <option value="Estado de México">Estado de México</option>
+                                    <option value="Guanajuato">Guanajuato</option>
+                                    <option value="Guerrero">Guerrero</option>
+                                    <option value="Hidalgo">Hidalgo</option>
+                                    <option value="Jalisco">Jalisco</option>
+                                    <option value="Michoacán">Michoacán</option>
+                                    <option value="Morelos">Morelos</option>
+                                    <option value="Nayarit">Nayarit</option>
+                                    <option value="Nuevo León">Nuevo León</option>
+                                    <option value="Oaxaca">Oaxaca</option>
+                                    <option value="Puebla">Puebla</option>
+                                    <option value="Querétaro">Querétaro</option>
+                                    <option value="Quintana Roo">Quintana Roo</option>
+                                    <option value="San Luis Potosí">San Luis Potosí</option>
+                                    <option value="Sin Localidad">Sin Localidad</option>
+                                    <option value="Sinaloa">Sinaloa</option>
+                                    <option value="Sonora">Sonora</option>
+                                    <option value="Tabasco">Tabasco</option>
+                                    <option value="Tamaulipas">Tamaulipas</option>
+                                    <option value="Tlaxcala">Tlaxcala</option>
+                                    <option value="Veracruz">Veracruz</option>
+                                    <option value="Yucatán">Yucatán</option>
+                                    <option value="Zacatecas">Zacatecas</option>
+                                </select>
+                                <label>Entidad donde se realizará le trámite <span id="registro-label-error" class="error" style="display:none; color:red;">* Requerido</span></label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12">
+                                <h1 class="color-gris-claro" style="margin:0px; font-size:22px;">Documentación</h1>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom:50px;">
+                            <div class="col s6">
+                                <p class="color-gris-oscuro" style="margin:0px;">
+                                    Cuida la legibilidad, definición y resolución de los documentos, te recomendamos subir tus formatos de preferencia por via escáner o en fotografía con buena iluminación y un buen enfoque, ya que tus datos serán procesados manualmente.
+                                </p>
+                            </div>
+                            <div class="col s6">
+                                <div class="row" style="margin-top:40px;">
+                                    <div class="col s6 right-align">
+                                        <img src="/img/hola-blur.png" style="display: inline; width:60%;">
+                                    </div>
+                                    <div class="col s6 left-align">
+                                        <img src="/img/hola-bien.png" style="display: inline; width:60%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        @foreach (var req in Model.Requerimientos)
+                        {
+                            if (req.tipo_requerimiento == "archivo_adjunto")
+                            {
+                                <div class="row">
+                                    <div class="col s12 file-field input-field">
+                                        <div class="btn btn-negro" style="padding-bottom:50px;">
+                                            <span>Adjuntar <i class="material-icons">attach_file</i></span>
+                                            <input type="file" class="required" name="files[@req.id]" id="files_@req.id">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" type="text" placeholder="@req.nombre">
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                        <div class="row" style="margin-top: 80px;">
+                            <div class="col s12 center-align">
+                                <button class="btn btn-negro" tyoe="submit">Iniciar trámite</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+@section scripts{
+    
+    <script type="text/javascript">
+
+	    $(document).ready(function() {
+		    $('select').material_select();
+
+	    });
+
+	    $( "#RegistroTramite" ).validate({
+
+	    });
+
+	    $('#RegistroTramite').submit(function(){
+
+		    var flag = true;
+
+		    if($('#SolicitudeEntidadFederativa').val() == ""){
+			    $('#registro-label-error').css('display','');
+			    flag = false;
+		    }else{
+			    $('#registro-label-error').css('display','none');
+		    }
+
+		    return flag;
+
+
+	    });
+
+    </script>
+
+}
