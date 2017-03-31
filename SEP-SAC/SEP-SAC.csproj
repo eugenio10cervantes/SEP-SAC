@@ -222,6 +222,15 @@
     <Compile Include="Models\Archivo.cs">
       <DependentUpon>SACModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>SACModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>SACModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>SACModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AspNetUsers.cs">
       <DependentUpon>SACModel.tt</DependentUpon>
     </Compile>
@@ -231,10 +240,19 @@
     <Compile Include="Models\ColegioAsignado.cs">
       <DependentUpon>SACModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>SACModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Datos.cs">
       <DependentUpon>SACModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Evaluador.cs">
+      <DependentUpon>SACModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EvaluadoresAsignado.cs">
+      <DependentUpon>SACModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EvDisponible.cs">
       <DependentUpon>SACModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
@@ -449,6 +467,8 @@
     <Content Include="Views\Home\Tramite.cshtml" />
     <Content Include="Views\Admin\Solicitudes.cshtml" />
     <Content Include="Views\Admin\Solicitud.cshtml" />
+    <Content Include="Views\Admin\AgregarEvDisponible.cshtml" />
+    <Content Include="Views\Admin\BorrarEvDisponible.cshtml" />
     <None Include="Views\Shared\Admin.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

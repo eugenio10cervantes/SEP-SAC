@@ -12,23 +12,18 @@ namespace SEP_SAC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Requerimiento
+    public partial class AspNetRole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Requerimiento()
+        public AspNetRole()
         {
-            this.Adjuntos = new HashSet<Adjunto>();
+            this.AspNetUsers = new HashSet<AspNetUsers>();
         }
     
-        public int id { get; set; }
-        public string nombre { get; set; }
-        public int perfil_id { get; set; }
-        public string tipo_requerimiento { get; set; }
-        public Nullable<System.DateTime> creacion { get; set; }
-        public Nullable<System.DateTime> modificacion { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
     
-        public virtual Perfil Perfiles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Adjunto> Adjuntos { get; set; }
+        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
     }
 }

@@ -63,4 +63,46 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col s12">
+            <hr />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <h2>Evaluadores Habilitados</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Nombre de la institución
+                        </th>
+                        <th>
+                            Acciones
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ev in Model.EvDisponibles)
+                    {
+                        <tr>
+                            <td>@ev.Evaluador.nombre</td>
+                            <td>
+                                <a href="~/Admin/BorrarEvDisponible/@ev.id">Borrar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="s12 col right-align">
+            <a href="~/Admin/BorrarEvDisponible/@Model.id" class="btn-floating btn-large waves-effect waves-light red" title="Agregar nivel"><i class="material-icons">add</i></a>
+        </div>
+    </div>
+
 </div>

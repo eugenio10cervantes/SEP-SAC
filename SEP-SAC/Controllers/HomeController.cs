@@ -81,6 +81,7 @@ namespace SEP_SAC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Authorize]
         public ActionResult Tramite(FormCollection fc)
         {
@@ -89,10 +90,11 @@ namespace SEP_SAC.Controllers
             Solicitud solicitud = new Solicitud();
 
             // Seteamos los datos
+            solicitud.evaluador_id = fc["evaluador_id"];
             solicitud.entidad_federativa = fc["entidad_federativa"];
             solicitud.perfil_id = Int32.Parse(fc["perfil_id"]);
             solicitud.solicitante_id = User.Identity.GetUserId();
-            solicitud.estatus = "Registrado";
+            solicitud.estatus = "Asignado";
             solicitud.created = DateTime.Now;
             solicitud.modified = DateTime.Now;
 

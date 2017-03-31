@@ -353,6 +353,75 @@ namespace SEP_SAC.Controllers
         /* Termina sección de Perfiles */
 
 
+        /* Seccion de EvDisponible */
+
+
+        [Authorize(Roles = "Superadmin")]
+        public ActionResult AgregarEvDisponible(int? id)
+        {
+            ViewBag.id = id;
+            ViewBag.evaluador_id = new SelectList(db.Evaluadores, "id", "nombre");
+            Perfil perfiles = db.Perfiles.Find(id);
+            ViewBag.nombre_perfil = perfiles.nombre;
+            Nivel niveles = perfiles.Niveles;
+            ViewBag.nombre_procedimiento = niveles.Procedimientos.nombre;
+            ViewBag.id_procedimiento = niveles.procedimiento_id;
+            ViewBag.nombre_nivel = niveles.nombre;
+            ViewBag.nivel_id = niveles.id;
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Superadmin")]
+        public ActionResult AgregarEvDisponible([Bind(Include = "id, evaluador_id, perfil_id")] EvDisponible evdisponible)
+        {
+            if (ModelState.IsValid)
+            {
+                db.EvDisponibles.Add(evdisponible);
+                db.SaveChanges();
+                return RedirectToAction("Perfil", new { id = evdisponible.perfil_id });
+            }
+
+            return View();
+        }
+
+
+        // GET: Niveles/Delete/5
+        [Authorize(Roles = "Superadmin")]
+        public ActionResult BorrarEvDisponible(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            EvDisponible evdisponible= db.EvDisponibles.Find(id);
+            if (evdisponible == null)
+            {
+                return HttpNotFound();
+            }
+            return View(evdisponible);
+        }
+
+
+
+        // POST: Niveles/Delete/5
+        [HttpPost, ActionName("BorrarEvDisponible")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Superadmin")]
+        public ActionResult DeleteConfirmedEvDisponible(int id)
+        {
+            EvDisponible evdisp = db.EvDisponibles.Find(id);
+            db.EvDisponibles.Remove(evdisp);
+            db.SaveChanges();
+            return RedirectToAction("Perfil", "Admin", new { id = evdisp.perfil_id });
+        }
+
+
+
+        /* Termina sección de EvDisponible */
+
 
         /* Seccion de Requerimientos */
 
@@ -456,7 +525,6 @@ namespace SEP_SAC.Controllers
 
             /* 
                 Estatus de solicitudes:
-                - Registrado
                 - Asignado
                 - Reasignado
                 - Colegio

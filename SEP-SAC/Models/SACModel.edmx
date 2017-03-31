@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SACModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
         <EntityType Name="Adjuntos">
           <Key>
             <PropertyRef Name="archivo_id" />
@@ -23,6 +33,40 @@
           <Property Name="path" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="created" Type="datetime" Nullable="false" />
           <Property Name="modified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="AspNetUsers">
           <Key>
@@ -92,6 +136,23 @@
           </Key>
           <Property Name="id" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EvaluadoresAsignados">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="evaluador_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="created" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="modified" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EvDisponibles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="evaluador_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="perfil_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Niveles">
           <Key>
@@ -261,6 +322,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_AsignacionSolicitud">
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="1" />
+          <End Role="EvaluadoresAsignados" Type="Self.EvaluadoresAsignados" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitudes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EvaluadoresAsignados">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Colegio">
           <End Role="Colegios" Type="Self.Colegios" Multiplicity="1" />
           <End Role="ColegiosAsignados" Type="Self.ColegiosAsignados" Multiplicity="*" />
@@ -309,6 +382,74 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluador_EvDisp">
+          <End Role="Evaluadores" Type="Self.Evaluadores" Multiplicity="1" />
+          <End Role="EvDisponibles" Type="Self.EvDisponibles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evaluadores">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EvDisponibles">
+              <PropertyRef Name="evaluador_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_EvaluadorAsignado">
           <End Role="Evaluadores" Type="Self.Evaluadores" Multiplicity="0..1" />
           <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="*" />
@@ -341,6 +482,18 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Solicitudes">
+              <PropertyRef Name="perfil_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Perfil_EvDisp">
+          <End Role="Perfiles" Type="Self.Perfiles" Multiplicity="1" />
+          <End Role="EvDisponibles" Type="Self.EvDisponibles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfiles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EvDisponibles">
               <PropertyRef Name="perfil_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -442,13 +595,20 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SACModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Adjuntos" EntityType="Self.Adjuntos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Archivos" EntityType="Self.Archivos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Colegios" EntityType="Self.Colegios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ColegiosAsignados" EntityType="Self.ColegiosAsignados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Datos" EntityType="Self.Datos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Evaluadores" EntityType="Self.Evaluadores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EvaluadoresAsignados" EntityType="Self.EvaluadoresAsignados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EvDisponibles" EntityType="Self.EvDisponibles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Niveles" EntityType="Self.Niveles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Perfiles" EntityType="Self.Perfiles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrimerasEvaluaciones" EntityType="Self.PrimerasEvaluaciones" Schema="dbo" store:Type="Tables" />
@@ -482,6 +642,10 @@
             <End Role="Archivos" EntitySet="Archivos" />
             <End Role="TercerasEvaluaciones" EntitySet="TercerasEvaluaciones" />
           </AssociationSet>
+          <AssociationSet Name="FK_AsignacionSolicitud" Association="Self.FK_AsignacionSolicitud">
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+            <End Role="EvaluadoresAsignados" EntitySet="EvaluadoresAsignados" />
+          </AssociationSet>
           <AssociationSet Name="FK_Colegio" Association="Self.FK_Colegio">
             <End Role="Colegios" EntitySet="Colegios" />
             <End Role="ColegiosAsignados" EntitySet="ColegiosAsignados" />
@@ -498,6 +662,26 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Datos" EntitySet="Datos" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluador_EvDisp" Association="Self.FK_Evaluador_EvDisp">
+            <End Role="Evaluadores" EntitySet="Evaluadores" />
+            <End Role="EvDisponibles" EntitySet="EvDisponibles" />
+          </AssociationSet>
           <AssociationSet Name="FK_EvaluadorAsignado" Association="Self.FK_EvaluadorAsignado">
             <End Role="Evaluadores" EntitySet="Evaluadores" />
             <End Role="Solicitudes" EntitySet="Solicitudes" />
@@ -509,6 +693,10 @@
           <AssociationSet Name="FK_Perfil" Association="Self.FK_Perfil">
             <End Role="Perfiles" EntitySet="Perfiles" />
             <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Perfil_EvDisp" Association="Self.FK_Perfil_EvDisp">
+            <End Role="Perfiles" EntitySet="Perfiles" />
+            <End Role="EvDisponibles" EntitySet="EvDisponibles" />
           </AssociationSet>
           <AssociationSet Name="FK_Perfiles_Requerimientos" Association="Self.FK_Perfiles_Requerimientos">
             <End Role="Perfiles" EntitySet="Perfiles" />
@@ -570,6 +758,7 @@
           <Property Name="modificacion" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Niveles" Relationship="Self.FK_Niveles_Perfiles" FromRole="Perfiles" ToRole="Niveles" />
           <NavigationProperty Name="Requerimientos" Relationship="Self.FK_Perfiles_Requerimientos" FromRole="Perfiles" ToRole="Requerimientos" />
+          <NavigationProperty Name="EvDisponibles" Relationship="SACModel.FK_Perfil_EvDisp" FromRole="Perfil" ToRole="EvDisponible" />
         </EntityType>
         <EntityType Name="Procedimiento">
           <Key>
@@ -731,6 +920,36 @@
             <End Role="Solicitud" EntitySet="Solicitudes" />
             <End Role="ColegiosAsignado" EntitySet="ColegiosAsignados" />
           </AssociationSet>
+          <EntitySet Name="EvaluadoresAsignados" EntityType="SACModel.EvaluadoresAsignado" />
+          <AssociationSet Name="FK_AsignacionSolicitud" Association="SACModel.FK_AsignacionSolicitud">
+            <End Role="Solicitud" EntitySet="Solicitudes" />
+            <End Role="EvaluadoresAsignado" EntitySet="EvaluadoresAsignados" />
+          </AssociationSet>
+          <EntitySet Name="C__MigrationHistory" EntityType="SACModel.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="SACModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="SACModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="SACModel.AspNetUserLogin" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="SACModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="SACModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="SACModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="EvDisponibles" EntityType="SACModel.EvDisponible" />
+          <AssociationSet Name="FK_Evaluador_EvDisp" Association="SACModel.FK_Evaluador_EvDisp">
+            <End Role="Evaluador" EntitySet="Evaluadores" />
+            <End Role="EvDisponible" EntitySet="EvDisponibles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Perfil_EvDisp" Association="SACModel.FK_Perfil_EvDisp">
+            <End Role="Perfil" EntitySet="Perfiles" />
+            <End Role="EvDisponible" EntitySet="EvDisponibles" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AspNetUsers">
           <Key>
@@ -752,6 +971,9 @@
           <NavigationProperty Name="Datos" Relationship="SACModel.FK_Datos_Users" FromRole="AspNetUsers" ToRole="Datos" />
           <NavigationProperty Name="Evaluador" Relationship="SACModel.FK_Usuarios_Evaluadores" FromRole="AspNetUsers" ToRole="Evaluadore" />
           <NavigationProperty Name="Colegio" Relationship="SACModel.FK_Colegios" FromRole="AspNetUsers" ToRole="Colegio" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="SACModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="SACModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="AspNetRoles" Relationship="SACModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRole" />
         </EntityType>
         <EntityType Name="Solicitud">
           <Key>
@@ -776,6 +998,7 @@
           <NavigationProperty Name="Evaluador" Relationship="SACModel.FK_EvaluadorAsignado" FromRole="Solicitud" ToRole="Evaluador" />
           <NavigationProperty Name="SolicitudesDeshechada" Relationship="SACModel.FK_SolicitudesDeshechadas" FromRole="Solicitud" ToRole="SolicitudesDeshechada" />
           <NavigationProperty Name="ColegioAsignado" Relationship="SACModel.FK_ColegiosAsignados" FromRole="Solicitud" ToRole="ColegiosAsignado" />
+          <NavigationProperty Name="EvaluadoresAsignado" Relationship="SACModel.FK_AsignacionSolicitud" FromRole="Solicitud" ToRole="EvaluadoresAsignado" />
         </EntityType>
         <Association Name="FK_Solicitante">
           <End Type="SACModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
@@ -1126,6 +1349,133 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="EvaluadoresAsignado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="evaluador_id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="created" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" Precision="3" />
+          <Property Name="modified" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" Precision="3" />
+          <NavigationProperty Name="Solicitude" Relationship="SACModel.FK_AsignacionSolicitud" FromRole="EvaluadoresAsignado" ToRole="Solicitud" />
+        </EntityType>
+        <Association Name="FK_AsignacionSolicitud">
+          <End Type="SACModel.Solicitud" Role="Solicitud" Multiplicity="1" />
+          <End Type="SACModel.EvaluadoresAsignado" Role="EvaluadoresAsignado" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitud">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EvaluadoresAsignado">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="SACModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="SACModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="SACModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUsers" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="SACModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SACModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="SACModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SACModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="SACModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="SACModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityType Name="EvDisponible">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="evaluador_id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="perfil_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Evaluador" Relationship="SACModel.FK_Evaluador_EvDisp" FromRole="EvDisponible" ToRole="Evaluador" />
+          <NavigationProperty Name="Perfile" Relationship="SACModel.FK_Perfil_EvDisp" FromRole="EvDisponible" ToRole="Perfil" />
+        </EntityType>
+        <Association Name="FK_Evaluador_EvDisp">
+          <End Type="SACModel.Evaluador" Role="Evaluador" Multiplicity="1" />
+          <End Type="SACModel.EvDisponible" Role="EvDisponible" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evaluador">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EvDisponible">
+              <PropertyRef Name="evaluador_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Perfil_EvDisp">
+          <End Type="SACModel.Perfil" Role="Perfil" Multiplicity="1" />
+          <End Type="SACModel.EvDisponible" Role="EvDisponible" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EvDisponible">
+              <PropertyRef Name="perfil_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1328,6 +1678,70 @@
                 <ScalarProperty Name="cargo" ColumnName="cargo" />
                 <ScalarProperty Name="jefe_departamento" ColumnName="jefe_departamento" />
                 <ScalarProperty Name="colegio_id" ColumnName="colegio_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EvaluadoresAsignados">
+            <EntityTypeMapping TypeName="SACModel.EvaluadoresAsignado">
+              <MappingFragment StoreEntitySet="EvaluadoresAsignados">
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="evaluador_id" ColumnName="evaluador_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="SACModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="SACModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="SACModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="SACModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="SACModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="EvDisponibles">
+            <EntityTypeMapping TypeName="SACModel.EvDisponible">
+              <MappingFragment StoreEntitySet="EvDisponibles">
+                <ScalarProperty Name="perfil_id" ColumnName="perfil_id" />
+                <ScalarProperty Name="evaluador_id" ColumnName="evaluador_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

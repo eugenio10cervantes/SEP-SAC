@@ -72,4 +72,45 @@
             <button id="submit-instancia" class="btn" type="submit">Proceder</button>
         </div>
     </div>
+
+}
+
+@using (Html.BeginForm("PrimerEvaluacion", "Admin"))
+{
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" name="solicitud_id" value="@Model.id" />
+
+    <div id="primer_evaluacion" class="modal modal-fixed-footer">
+        <div class="modal-content">
+
+            <div class="row">
+                <div class="col s12">
+                    <h1>Primer Evaluación</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 file-field input-field">
+
+                    <span class="heading-evaluacion">Evaluación 1</span>
+
+                    <div class="btn">
+                        <span><i class="material-icons">attachment</i></span>
+                        <input type="file" name="primerarchivo">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" name="archivo_1">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="modal-footer fondo-verde">
+            <span style="padding-top:12px; display:inline-block;">SUBIR PRIMER EVALUACION</span>
+            <button id="submit-instancia" class="btn" type="submit">Proceder</button>
+        </div>
+    </div>
+
 }

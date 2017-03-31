@@ -12,15 +12,13 @@ namespace SEP_SAC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SegundasEvaluacione
+    public partial class EvaluadoresAsignado
     {
-        public int solicitud_id { get; set; }
-        public int archivo_id { get; set; }
-        public string resultado { get; set; }
+        public int id { get; set; }
+        public string evaluador_id { get; set; }
         public System.DateTime created { get; set; }
         public System.DateTime modified { get; set; }
     
-        public virtual Archivo Archivo { get; set; }
         public virtual Solicitud Solicitude { get; set; }
     }
 }

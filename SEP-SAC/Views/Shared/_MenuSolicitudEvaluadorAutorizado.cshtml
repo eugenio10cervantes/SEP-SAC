@@ -1,4 +1,51 @@
-﻿<div class="row" style="margin-top:60px;">
+﻿<div class="row">
+
+    <div class="col s4">
+
+        @if (Model.PrimerasEvaluacione == null)
+        {
+            <a href="#primer_evaluacion" class="btn btn-verde modal-trigger">Primer Evaluación</a>
+        }
+        else
+        {
+            <a href="@Model.PrimerasEvaluacione.Archivo.path@Model.PrimerasEvaluacione.Archivo.nombre_archivo" download="@Model.PrimerasEvaluacione.Archivo.nombre_archivo">Archivo</a>
+        }
+        
+    </div>
+
+    <div class="col s4">
+
+        @if (Model.PrimerasEvaluacione != null)
+        {
+            if (Model.SegundasEvaluacione == null)
+            {
+                <a href="#primer_evaluacion" class="btn btn-verde modal-trigger">Primer Evaluación</a>
+            }
+            else
+            {
+                //Desplegar evaluación
+            }
+        }
+
+    </div>
+
+    <div class="col s4">
+        @if (Model.SegundasEvaluacione != null)
+        {
+            if (Model.TercerasEvaluacione == null)
+            {
+                <a href="#primer_evaluacion" class="btn btn-verde modal-trigger">Primer Evaluación</a>
+            }
+            else
+            {
+                // Desplegar el archivo
+            }
+        }
+    </div>
+
+</div>
+
+<div class="row" style="margin-top:60px;">
     <div class="col s4 offset-s4 center-align">
         <div class="row">
             <span class="color-gris-oscuro">Datos completos</span>
